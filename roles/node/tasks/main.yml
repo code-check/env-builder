@@ -1,0 +1,7 @@
+- name: Install node.js
+  apt: pkg={{item}}
+  with_items:
+  - nodejs
+  - npm
+- name: Make symlink to node
+  file: path=/usr/bin/node src=/usr/bin/nodejs state=link

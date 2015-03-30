@@ -1,0 +1,11 @@
+- hosts: servers
+  user: vagrant
+  sudo: yes
+  tasks:
+    - name: Upgrade packages
+      apt: update_cache=yes upgrade=yes
+  roles:
+    - php
+    - ruby
+    - node
+    - git
