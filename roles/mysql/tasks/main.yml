@@ -1,0 +1,9 @@
+- name: Install mysql
+  apt: pkg={{item}}
+  with_items:
+  - mysql-server-5.6
+  - python-mysqldb
+- name: create mysql db
+  mysql_db: name=cody state=present
+- name: create mysql user
+  mysql_user: name=cody password=cody priv=cody.*:ALL state=present
