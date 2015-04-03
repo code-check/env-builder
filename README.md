@@ -1,4 +1,19 @@
 # Code-Check test environment builder
+This makes a virtual machine which has several programming languages.
+
+## Packages which installed by this.
+- java 8
+- node 0.10.x
+  - npm
+- php 5.5
+  - composer
+- ruby 2.2
+- scala 2.11.6
+  - sbt 0.13.8
+  - activator 1.3.2
+
+- git 1.9.1
+- mysql 5.6
 
 ## Prerequisite
 

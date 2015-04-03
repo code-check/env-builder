@@ -1,2 +1,6 @@
 - name: Update system package
   apt: upgrade=safe state=present update_cache=yes
+- name: Install unzip
+  apt: name=unzip state=present
+- name: Stop apache2
+  service: name=apache2 state=stopped

@@ -1,0 +1,23 @@
+---
+- name: Create lib dir
+  file: path={{activator_lib_path}} state=directory
+
+- name: Clean existing version {{activator_version}} if it exists
+  file: path={{activator_lib_path_target}} state=absent
+
+- name: Download activator v{{activator_version}}
+  get_url: url={{activator_download_url}}
+    dest=/tmp/{{activator_archive_file}}
+    force=no
+
+- name: Unpack activator
+  command: unzip {{activator_archive_file}} chdir=/tmp/
+
+- name: Change owner
+  file: path=/tmp/{{activator_archive_name}} group=vagrant owner=vagrant recurse=true
+
+- name: Move (by force) activator to lib
+  command: mv /tmp/{{activator_archive_name}} {{activator_lib_path_target}} chdir=/tmp/
+
+- name: Link activator
+  command: sudo ln -sf {{activator_lib_path_target}}/activator {{activator_link_target}}

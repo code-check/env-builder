@@ -3,6 +3,9 @@
   with_items:
   - mysql-server-5.6
   - python-mysqldb
+- name: copy minimal-memory.cnf
+  copy: src=minimal-memory.cnf dest=/etc/mysql/conf.d
+  notify: restart mysql
 - name: create mysql db
   mysql_db: name=cody state=present
 - name: create mysql user

@@ -1,3 +1,4 @@
 ---
 - include: scala.yml
 - include: sbt.yml
+- include: activator.yml
