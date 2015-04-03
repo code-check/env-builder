@@ -1,0 +1,3 @@
+---
+- include: scala.yml
+- include: sbt.yml

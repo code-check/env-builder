@@ -1,12 +1,12 @@
 - hosts: servers
   user: vagrant
   sudo: yes
-  tasks:
-    - name: Upgrade packages
-      apt: update_cache=yes upgrade=yes
   roles:
+    - system
     - php
     - ruby
     - node
+    - java
+    - scala
     - git
     - mysql

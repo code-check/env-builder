@@ -1,0 +1,2 @@
+- name: Update system package
+  apt: upgrade=safe state=present update_cache=yes
