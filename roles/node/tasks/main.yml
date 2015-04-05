@@ -5,3 +5,9 @@
   - npm
 - name: Make symlink to node
   file: path=/usr/bin/node src=/usr/bin/nodejs state=link
+- name: install typescript
+  npm: name=typescript global=yes
+- name: install coffeescript
+  npm: name=coffee-script global=yes
+- name: install mocha
+  npm: name=mocha global=yes

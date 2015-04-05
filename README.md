@@ -5,6 +5,9 @@ This makes a virtual machine which has several programming languages.
 - java 8
 - node 0.10.x
   - npm
+  - typescript
+  - coffeescript
+  - mocha
 - php 5.5
   - composer
 - ruby 2.2
