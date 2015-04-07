@@ -1,0 +1,6 @@
+- name: Install Python3
+  apt: name={{item}} state=latest
+  with_items:
+    - python3-all-dev
+    - python3-setuptools
+    - python3-pip

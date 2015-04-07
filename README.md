@@ -14,6 +14,7 @@ This makes a virtual machine which has several programming languages.
 - scala 2.11.6
   - sbt 0.13.8
   - activator 1.3.2
+- python3
 
 - git 1.9.1
 - mysql 5.6
