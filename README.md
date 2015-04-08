@@ -15,7 +15,6 @@ This makes a virtual machine which has several programming languages.
   - sbt 0.13.8
   - activator 1.3.2
 - python3
-
 - git 1.9.1
 - mysql 5.6
 
@@ -30,6 +29,9 @@ Add ubunt1404 to vagrant box
 ``` bash
 vagrant box add ubuntu1404 https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box
 ```
+
+And then make your own Vagrantfile.  
+[Vagrantfile.sample](Vagrantfile.sample) is a sample.
 
 Export the private key path for GitHub.  
 
@@ -66,5 +68,5 @@ So, you have to remove existing host signature(192.168.33.101) from known_hosts.
 ## Customize
 You can change private ip address from 192.168.33.101 to other by editing following files.
 
-- [Vagrantfile](Vagrantfile)
+- Vagrantfile
 - [hosts](hosts)
