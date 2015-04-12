@@ -1,10 +1,15 @@
-- name: Install node.js
-  apt: pkg={{item}}
-  with_items:
-  - nodejs
-  - npm
-- name: Make symlink to node
-  file: path=/usr/bin/node src=/usr/bin/nodejs state=link
+- name: Install nvm v{{nvm_version}}
+  shell: curl https://raw.githubusercontent.com/creationix/nvm/v{{nvm_version}}/install.sh | bash
+  args:
+    creates: /home/vagrant/.nvm
+  sudo: false
+- name: Install node v{{node_version}}
+  shell: /bin/bash -c "source ~/.nvm/nvm.sh && nvm install {{node_version}} && nvm alias default {{node_version}}"
+  args:
+    creates: /home/vagrant/.nvm/alias
+  sudo: false
+- name: Install npm
+  apt: name=npm
 - name: install typescript
   npm: name=typescript global=yes
 - name: install coffeescript
