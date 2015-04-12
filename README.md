@@ -41,12 +41,14 @@ export PRIVATE_KEY_PATH=~/.ssh/id_rsa
 ```
 
 ## Make local environment
+All roles are included in all.yml.  
+If you want to choose using roles, make your own yaml file.  
 
 ``` bash
 git clone https://github.com/code-check/env-builder.git code-check-env
 cd code-check-env
 vagrant up
-ansible-playbook setup.yml
+ansible-playbook all.yml
 ```
 
 ## Run
