@@ -2,4 +2,5 @@
 data/
 Vagrantfile
 custom.yml
+hosts
 
