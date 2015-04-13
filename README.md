@@ -3,7 +3,8 @@ This makes a virtual machine which has several programming languages.
 
 ## Packages which installed by this.
 - java 8
-- node 0.10.x
+- node 0.12.x
+  - nvm
   - npm
   - typescript
   - coffeescript
@@ -30,8 +31,8 @@ Add ubunt1404 to vagrant box
 vagrant box add ubuntu1404 https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box
 ```
 
-And then make your own Vagrantfile.  
-[Vagrantfile.sample](Vagrantfile.sample) is a sample.
+And then make your own Vagrantfile and hosts.  
+[Vagrantfile.sample](Vagrantfile.sample) and [hosts.sample](hosts.sample) are sample files.
 
 Export the private key path for GitHub.  
 
@@ -67,8 +68,3 @@ If you destroyed the virtual machine and recreate it.
 Its host signature changes.  
 So, you have to remove existing host signature(192.168.33.101) from known_hosts.
 
-## Customize
-You can change private ip address from 192.168.33.101 to other by editing following files.
-
-- Vagrantfile
-- [hosts](hosts)
