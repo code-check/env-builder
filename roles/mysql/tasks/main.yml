@@ -8,6 +8,8 @@
   copy: src=minimal-memory.cnf dest=/etc/mysql/conf.d
   notify: restart mysql
 - name: create mysql db
-  mysql_db: name=cody state=present
-- name: create mysql user
-  mysql_user: name=cody password=cody priv=cody.*:ALL state=present
+  mysql_db: name=vagrant state=present
+- name: create mysql user vagrant
+  mysql_user: name=vagrant password=vagrant priv=vagrant.*:ALL state=present
+- name: create mysql user vagrant@%
+  mysql_user: name=vagrant host=% password=vagrant priv=vagrant.*:ALL state=present
