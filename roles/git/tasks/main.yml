@@ -1,3 +1,7 @@
+- name: Add repository for git
+  apt_repository: repo=ppa:git-core/ppa
+- name: Upgrade packages
+  apt: update_cache=yes upgrade=yes
 - name: Install git
   apt: name=git
 - name: copy private key

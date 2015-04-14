@@ -16,7 +16,7 @@ This makes a virtual machine which has several programming languages.
   - sbt 0.13.8
   - activator 1.3.2
 - python3
-- git 1.9.1
+- git 2.x
 - mysql 5.6
 
 ## Prerequisite
