@@ -4,6 +4,20 @@
   - postgresql
   - postgresql-contrib
   - python-psycopg2
+- name: Update posgresql.conf
+  lineinfile: >-
+    dest=/etc/postgresql/9.3/main/postgresql.conf 
+    line="listen_addresses = '*'" 
+    backrefs=yes 
+    regexp="#listen_addresses"
+  notify: restart postgresql
+- name: Update posgresql.conf
+  lineinfile: >-
+    dest=/etc/postgresql/9.3/main/pg_hba.conf 
+    line="host all all 0.0.0.0/0 md5" 
+    backrefs=yes 
+    regexp="^host.*127.0.0.1/32"
+  notify: restart postgresql
 - name: create postgres db
   postgresql_db: name=vagrant state=present
   sudo: yes
