@@ -10,4 +10,5 @@
     - scala
     - python3
     - git
-    - mysql
+#    - mysql
+#    - postgresql

@@ -1,0 +1,14 @@
+- name: Install postgres
+  apt: pkg={{item}}
+  with_items:
+  - postgresql
+  - postgresql-contrib
+  - python-psycopg2
+- name: create postgres db
+  postgresql_db: name=vagrant state=present
+  sudo: yes
+  sudo_user: postgres
+- name: create postgresql user vagrant
+  postgresql_user: name=vagrant db=vagrant password=vagrant role_attr_flags=SUPERUSER state=present
+  sudo: yes
+  sudo_user: postgres
