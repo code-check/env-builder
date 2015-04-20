@@ -1,9 +1,13 @@
 - name: Add repository for git
   apt_repository: repo=ppa:git-core/ppa
+  sudo: yes
 - name: Upgrade packages
   apt: update_cache=yes upgrade=yes
+  sudo: yes
 - name: Install git
   apt: name=git
+  sudo: yes
 - name: copy private key
   copy: src={{private_key_path}} dest=/home/vagrant/.ssh/id_rsa owner=vagrant group=vagrant mode=0600    
+  sudo: no
 

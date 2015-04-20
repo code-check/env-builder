@@ -1,7 +1,9 @@
 - name: Add repository for php 5.5
   apt_repository: repo=ppa:ondrej/php5
+  sudo: yes
 - name: Upgrade packages
   apt: update_cache=yes upgrade=yes
+  sudo: yes
 
 - name: Install php 5.5
   apt: pkg={{item}}
@@ -10,6 +12,7 @@
   - php5-curl
   - php5-mysql
   - php5-gd
+  sudo: yes
 
 - name: check composer installed
   command: test -f /usr/bin/composer
@@ -17,9 +20,12 @@
   register: var_composer_installed
   failed_when: false
   changed_when: var_composer_installed.rc != 0
+  sudo: no
 - name: install composer
   shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
   when: var_composer_installed.rc != 0
+  sudo: yes
 - name: move composer.phar to composer
   command: mv /usr/bin/composer.phar /usr/bin/composer
   when: var_composer_installed.rc != 0
+  sudo: yes

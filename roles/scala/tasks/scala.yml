@@ -1,38 +1,51 @@
 ---
 - name: Create scala lib dir
   file: path={{scala_lib_path}} state=directory
+  sudo: yes
 
 - name: Clean existing Scala {{scala_version_name}} if it exists
   file: path={{scala_lib_path_target}} state=absent
+  sudo: yes
 
 - name: Download scala v{{scala_version}}
   get_url: url={{scala_download_url}}
     dest=/tmp/{{scala_archive_file}}
     force=no
+  sudo: no
 
 - name: Unpack Scala
   command: tar -xvf {{scala_archive_file}} chdir=/tmp/
+  sudo: no
 
 - name: Move (by force) Scala to lib
   command: mv /tmp/{{scala_version_name}} {{scala_lib_path_target}} chdir=/tmp/
+  sudo: yes
 
 - name: Link scala
-  command: sudo ln -sf {{scala_lib_path_target}}/bin/scala {{scala_link_target}}
+  command: ln -sf {{scala_lib_path_target}}/bin/scala {{scala_link_target}}
+  sudo: yes
 
 - name: Link scalac
-  command: sudo ln -sf {{scala_lib_path_target}}/bin/scalac {{scala_link_target}}
+  command: ln -sf {{scala_lib_path_target}}/bin/scalac {{scala_link_target}}
+  sudo: yes
 
 - name: Link fsc
-  command: sudo ln -sf {{scala_lib_path_target}}/bin/fsc {{scala_link_target}}
+  command: ln -sf {{scala_lib_path_target}}/bin/fsc {{scala_link_target}}
+  sudo: yes
 
 - name: Link sbaz
-  command: sudo ln -sf {{scala_lib_path_target}}/bin/sbaz {{scala_link_target}}
+  command: ln -sf {{scala_lib_path_target}}/bin/sbaz {{scala_link_target}}
+  sudo: yes
 
 - name: Link sbaz-setup
-  command: sudo ln -sf {{scala_lib_path_target}}/bin/sbaz-setup {{scala_link_target}}
+  command: ln -sf {{scala_lib_path_target}}/bin/sbaz-setup {{scala_link_target}}
+  sudo: yes
 
 - name: Link scaladoc
-  command: sudo ln -sf {{scala_lib_path_target}}/bin/scaladoc {{scala_link_target}}
+  command: ln -sf {{scala_lib_path_target}}/bin/scaladoc {{scala_link_target}}
+  sudo: yes
 
 - name: Link scalap
-  command: sudo ln -sf {{scala_lib_path_target}}/bin/scalap {{scala_link_target}}
+  command: ln -sf {{scala_lib_path_target}}/bin/scalap {{scala_link_target}}
+  sudo: yes
+
