@@ -1,19 +1,25 @@
 - name: Add repository for ruby 2.2
   apt_repository: repo=ppa:brightbox/ruby-ng
+  sudo: yes
 - name: Upgrade packages
   apt: update_cache=yes upgrade=yes
+  sudo: yes
 
 - name: Install ruby
   apt: pkg={{item}}
   with_items:
   - ruby2.2
   - ruby2.2-dev
+  sudo: yes
 - name: Make symlink to ruby2.2
   file: path=/usr/bin/ruby src=/usr/bin/ruby2.2 state=link
+  sudo: yes
 - name: Make symlink to gem2.2
   file: path=/usr/bin/gem src=/usr/bin/gem2.2 state=link
+  sudo: yes
 - name: gem update
   gem: name=system
+  sudo: yes
 
 - name: check ruby gem path
   shell: cat .profile | grep \.gem/ruby/2.2.0/bin
@@ -21,6 +27,8 @@
   register: var_gem_path
   failed_when: false
   changed_when: var_gem_path.rc != 0
+  sudo: no
 - name: set gem path
   shell: echo export PATH=\$HOME/.gem/ruby/2.2.0/bin:\$PATH >> .profile
   when: var_gem_path.rc != 0
+  sudo: no
