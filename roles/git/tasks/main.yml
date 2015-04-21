@@ -8,6 +8,6 @@
   apt: name=git
   sudo: yes
 - name: copy private key
-  copy: src={{private_key_path}} dest=/home/vagrant/.ssh/id_rsa owner=vagrant group=vagrant mode=0600    
+  copy: src={{private_key_path}} dest=~/.ssh/id_rsa owner={{os_user_name}} group={{os_user_name}} mode=0600    
   sudo: no
 

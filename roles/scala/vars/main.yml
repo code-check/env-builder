@@ -1,4 +1,6 @@
 ---
+os_user_name: "{{ lookup('env','OS_USER_NAME') }}"
+
 scala_version: "2.11.6"
 scala_version_name: "scala-{{scala_version}}"
 scala_archive_file: "{{scala_version_name}}.tgz"

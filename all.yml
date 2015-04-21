@@ -1,5 +1,5 @@
 - hosts: servers
-  user: vagrant
+  user: "{{ lookup('env','OS_USER_NAME') }}"
   sudo: no
   roles:
     - system
