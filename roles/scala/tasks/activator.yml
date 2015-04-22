@@ -18,7 +18,7 @@
   sudo: no
 
 - name: Change owner
-  file: path=/tmp/{{activator_archive_name}} group=vagrant owner=vagrant recurse=true
+  file: path=/tmp/{{activator_archive_name}} group={{os_user_name}} owner={{os_user_name}} recurse=true
   sudo: yes
 
 - name: Move (by force) activator to lib

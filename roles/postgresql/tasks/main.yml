@@ -19,10 +19,10 @@
     regexp="^host.*127.0.0.1/32"
   notify: restart postgresql
 - name: create postgres db
-  postgresql_db: name=vagrant state=present
+  postgresql_db: name={{os_user_name}} state=present
   sudo: yes
   sudo_user: postgres
-- name: create postgresql user vagrant
-  postgresql_user: name=vagrant db=vagrant password=vagrant role_attr_flags=SUPERUSER state=present
+- name: create postgresql user
+  postgresql_user: name={{os_user_name}} db={{os_user_name}} password={{os_user_name}} role_attr_flags=SUPERUSER state=present
   sudo: yes
   sudo_user: postgres

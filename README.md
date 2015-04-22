@@ -34,11 +34,11 @@ vagrant box add ubuntu1404 https://cloud-images.ubuntu.com/vagrant/trusty/curren
 And then make your own Vagrantfile and hosts.  
 [Vagrantfile.sample](Vagrantfile.sample) and [hosts.sample](hosts.sample) are sample files.
 
-Export the private key path for GitHub.  
+Export the private key path for GitHub and OS user name of guest PC.  
 
 ``` bash
 export PRIVATE_KEY_PATH=~/.ssh/id_rsa
-
+export OS_USER_NAME=vagrant
 ```
 
 ## Make local environment
