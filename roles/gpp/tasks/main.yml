@@ -1,0 +1,6 @@
+- name: Install g++ 4.8
+  apt: pkg={{item}}
+  with_items:
+  - g++-4.8
+  sudo: yes
+

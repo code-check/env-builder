@@ -1,0 +1,29 @@
+- name: Add repository for Haskell latest and past packages
+  apt_repository: repo=ppa:hvr/ghc
+  sudo: yes
+- name: Upgrade packages
+  apt: update_cache=yes upgrade=yes
+  sudo: yes
+
+- name: Install Haskell related packages
+  apt: name={{item}} state=latest
+  with_items:
+    - ghc-7.8.4
+    - ghc-haddock
+    - ghc-prof
+    - alex-3.1.4
+    - happy-1.19.5
+    - cabal-install-1.22 
+  sudo: yes
+
+- name: check cabal installed
+  command: test -f /usr/bin/cabal
+  ignore_errors: true
+  register: var_cabal_installed
+  failed_when: false
+  changed_when: var_cabal_installed.rc != 0
+  sudo: no
+- name: make link to cabal
+  shell: ln -s /usr/bin/cabal-1.22 /usr/bin/cabal
+  when: var_cabal_installed.rc != 0
+  sudo: yes
