@@ -11,14 +11,10 @@
   get_url: url={{activator_download_url}}
     dest=/tmp/{{activator_archive_file}}
     force=no
-  sudo: no
+  sudo: yes
 
 - name: Unpack activator
-  command: unzip {{activator_archive_file}} chdir=/tmp/
-  sudo: no
-
-- name: Change owner
-  file: path=/tmp/{{activator_archive_name}} group={{os_user_name}} owner={{os_user_name}} recurse=true
+  command: unzip {{activator_archive_file}} chdir=/tmp/ creates={{activator_archive_name}}
   sudo: yes
 
 - name: Move (by force) activator to lib
