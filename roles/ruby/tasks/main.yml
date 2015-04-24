@@ -21,14 +21,10 @@
   gem: name=system
   sudo: yes
 
-- name: check ruby gem path
-  shell: cat .profile | grep \.gem/ruby/2.2.0/bin
-  ignore_errors: true
-  register: var_gem_path
-  failed_when: false
-  changed_when: var_gem_path.rc != 0
+- name: export Path
+  lineinfile: >-
+    dest=~/.profile 
+    line='export PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"'
+    regexp=".gem/ruby/2.2.0/bin"
   sudo: no
-- name: set gem path
-  shell: echo export PATH=\$HOME/.gem/ruby/2.2.0/bin:\$PATH >> .profile
-  when: var_gem_path.rc != 0
-  sudo: no
+

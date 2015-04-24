@@ -8,14 +8,10 @@
   command: tar -C /usr/local -xzf {{go_archive_file}} chdir=/tmp/
   sudo: yes
 
-- name: check go path
-  shell: cat .profile | grep "/usr/local/go/bin"
-  ignore_errors: true
-  register: var_go_path
-  failed_when: false
-  changed_when: var_go_path.rc != 0
+- name: export Path
+  lineinfile: >-
+    dest=~/.profile 
+    line='export PATH="$PATH:/usr/local/go/bin"'
+    regexp="/usr/local/go/bin" 
   sudo: no
-- name: set go path
-  shell: echo 'export PATH=$PATH:/usr/local/go/bin' >> .profile
-  when: var_go_path.rc != 0
-  sudo: no
+

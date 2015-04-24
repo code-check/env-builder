@@ -14,14 +14,10 @@
   when: var_groovy_installed.rc != 0
   sudo: no
 
-- name: check groovy path
-  shell: cat .profile | grep ".gvm/groovy/current/bin"
-  ignore_errors: true
-  register: var_groovy_path
-  failed_when: false
-  changed_when: var_groovy_path.rc != 0
+- name: export Path
+  lineinfile: >-
+    dest=~/.profile 
+    line='export PATH="$PATH:~/.gvm/groovy/current/bin"'
+    regexp=".gvm/groovy/current/bin"
   sudo: no
-- name: set groovy path
-  shell: echo export PATH='$PATH:~/.gvm/groovy/current/bin' >> .profile
-  when: var_groovy_path.rc != 0
-  sudo: no
+
