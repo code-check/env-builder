@@ -17,6 +17,10 @@
   command: unzip {{activator_archive_file}} chdir=/tmp/ creates={{activator_archive_name}}
   sudo: yes
 
+- name: Change mode
+  file: path=/tmp/{{activator_archive_name}}/activator mode=0755
+  sudo: yes
+
 - name: Move (by force) activator to lib
   command: mv /tmp/{{activator_archive_name}} {{activator_lib_path_target}} chdir=/tmp/
   sudo: yes
