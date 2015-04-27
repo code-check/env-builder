@@ -2,7 +2,7 @@
   get_url: url={{go_download_url}}
     dest=/tmp/{{go_archive_file}}
     force=no
-  sudo: no
+  sudo: yes
 
 - name: Unpack activator
   command: tar -C /usr/local -xzf {{go_archive_file}} chdir=/tmp/

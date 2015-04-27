@@ -11,7 +11,7 @@
   get_url: url={{scala_download_url}}
     dest=/tmp/{{scala_archive_file}}
     force=no
-  sudo: no
+  sudo: yes
 
 - name: Unpack Scala
   command: tar -xvf {{scala_archive_file}} chdir=/tmp/
