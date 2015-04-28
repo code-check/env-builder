@@ -1,0 +1,17 @@
+- name: Download go from {{go_download_url}}
+  get_url: url={{go_download_url}}
+    dest=/tmp/{{go_archive_file}}
+    force=no
+  sudo: yes
+
+- name: Unpack activator
+  command: tar -C /usr/local -xzf {{go_archive_file}} chdir=/tmp/
+  sudo: yes
+
+- name: export Path
+  lineinfile: >-
+    dest=~/.profile 
+    line='export PATH="$PATH:/usr/local/go/bin"'
+    regexp="/usr/local/go/bin" 
+  sudo: no
+

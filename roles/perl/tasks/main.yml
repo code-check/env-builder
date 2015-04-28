@@ -1,0 +1,6 @@
+- name: Install perl
+  apt: pkg={{item}}
+  with_items:
+  - perl
+  sudo: yes
+

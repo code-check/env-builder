@@ -1,0 +1,2 @@
+go_download_url: "https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz"
+go_archive_file: "go1.4.2.linux-amd64.tar.gz"

@@ -1,0 +1,6 @@
+- name: Install ocaml
+  apt: pkg={{item}}
+  with_items:
+  - ocaml
+  sudo: yes
+

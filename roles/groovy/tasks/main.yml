@@ -1,0 +1,23 @@
+- name: check groovy installed
+  command: test -f ~/.gvm/groovy/current/bin/groovy
+  ignore_errors: true
+  register: var_groovy_installed
+  failed_when: false
+  changed_when: var_groovy_installed.rc != 0
+  sudo: no
+- name: install gvm
+  shell: curl -s get.gvmtool.net | bash
+  when: var_groovy_installed.rc != 0
+  sudo: no
+- name: install groovy
+  shell: /bin/bash -c "source ~/.gvm/bin/gvm-init.sh && echo 'Y' | gvm install groovy"
+  when: var_groovy_installed.rc != 0
+  sudo: no
+
+- name: export Path
+  lineinfile: >-
+    dest=~/.profile 
+    line='export PATH="$PATH:~/.gvm/groovy/current/bin"'
+    regexp=".gvm/groovy/current/bin"
+  sudo: no
+

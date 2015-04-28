@@ -9,6 +9,14 @@
     - java
     - scala
     - python3
+    - clang
+    - gcc
+    - go
+    - gpp
+    - groovy
+    - haskell
+    - ocaml
+    - perl
     - git
 
 #    - mysql

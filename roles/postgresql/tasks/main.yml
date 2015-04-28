@@ -4,6 +4,7 @@
   - postgresql
   - postgresql-contrib
   - python-psycopg2
+  sudo: yes
 - name: Update posgresql.conf
   lineinfile: >-
     dest=/etc/postgresql/9.3/main/postgresql.conf 
@@ -11,6 +12,7 @@
     backrefs=yes 
     regexp="#listen_addresses"
   notify: restart postgresql
+  sudo: yes
 - name: Update posgresql.conf
   lineinfile: >-
     dest=/etc/postgresql/9.3/main/pg_hba.conf 
@@ -18,6 +20,7 @@
     backrefs=yes 
     regexp="^host.*127.0.0.1/32"
   notify: restart postgresql
+  sudo: yes
 - name: create postgres db
   postgresql_db: name={{os_user_name}} state=present
   sudo: yes
