@@ -19,4 +19,5 @@
     - ocaml
     - perl
     - maven
+    - gradle
     - codecheck

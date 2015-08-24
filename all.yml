@@ -18,6 +18,7 @@
     - ocaml
     - perl
     - git
+    - gradle
 
 #    - mysql
 #    - postgresql
