@@ -28,3 +28,5 @@
     regexp=".gem/ruby/2.2.0/bin"
   sudo: no
 
+- name: Install rspec
+  gem: name=rspec
