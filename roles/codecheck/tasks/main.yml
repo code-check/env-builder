@@ -1,2 +1,0 @@
-- name: Install "codecheck" node.js package.
-  npm: name='codecheck' global=yes

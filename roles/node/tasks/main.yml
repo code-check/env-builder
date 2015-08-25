@@ -20,4 +20,6 @@
 - name: install mocha
   npm: name=mocha global=yes
   sudo: yes
-
+- name: Install "codecheck" node.js package.
+  npm: name=codecheck global=yes
+  sudo: yes
