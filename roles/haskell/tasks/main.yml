@@ -27,3 +27,9 @@
   shell: ln -s /usr/bin/cabal-1.22 /usr/bin/cabal
   when: var_cabal_installed.rc != 0
   sudo: yes
+
+- name: Update cabal
+  shell: cabal update
+
+- name: Install hspec
+  shell: cabal install hspec
