@@ -8,7 +8,7 @@
     - ruby
     - node
     - java
-    #    - scala
+#    - scala
     - python3
     - clang
     - gcc

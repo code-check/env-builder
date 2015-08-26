@@ -13,7 +13,7 @@
     - ghc-prof
     - alex-3.1.4
     - happy-1.19.5
-    - cabal-install-1.22 
+    - cabal-install-1.22
   sudo: yes
 
 - name: check cabal installed
