@@ -19,3 +19,6 @@
     - oracle-java8-set-default
   sudo: yes
 
+- name: Install maven
+  apt: pkg=maven
+  sudo: yes
