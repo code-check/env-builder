@@ -21,3 +21,4 @@
 
 - name: Install maven
   apt: pkg=maven
+  sudo: yes

@@ -8,7 +8,7 @@
     - ruby
     - node
     - java
-#    - scala
+    - scala
     - python3
     - clang
     - gcc
@@ -18,6 +18,4 @@
     - haskell
     - ocaml
     - perl
-    - maven
     - gradle
-    - codecheck
