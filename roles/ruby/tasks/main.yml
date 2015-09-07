@@ -23,7 +23,7 @@
 
 - name: export Path
   lineinfile: >-
-    dest=~/.profile
+    dest=~/.bashrc
     line='export PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"'
     regexp=".gem/ruby/2.2.0/bin"
   sudo: no
