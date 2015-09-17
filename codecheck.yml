@@ -4,18 +4,10 @@
   sudo: no
   roles:
     - system
-    - php
     - ruby
-    - node
     - java
     - scala
     - python3
     - clang
     - gcc
-    - go
     - gpp
-    - groovy
-    - haskell
-    - ocaml
-    - perl
-    - gradle
