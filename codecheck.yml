@@ -4,10 +4,14 @@
   sudo: no
   roles:
     - system
-    - ruby
-    - java
-    - scala
     - clang
     - gcc
     - gpp
+    - go
+    - java
     - haskell
+    - perl
+    - php
+    - python3
+    - ruby
+    - scala
