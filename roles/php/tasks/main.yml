@@ -29,3 +29,9 @@
   command: mv /usr/bin/composer.phar /usr/bin/composer
   when: var_composer_installed.rc != 0
   sudo: yes
+
+- name: veriify phpunit installation
+  command: which phpunit
+  register: verify
+  failed_when: false # never be failure
+  changed_when: verify.rc != 0

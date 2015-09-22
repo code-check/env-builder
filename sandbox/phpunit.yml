@@ -5,7 +5,8 @@
   - name: verify phpunit installation
     command: which phpunit
     register: verify
-    failed_when: false # never fails
+    ignore_errors: true
+    # failed_when: false # never fails
     changed_when: verify.rc != 0
   - name: Download phpunit.phar
     when: verify | failed
@@ -16,4 +17,7 @@
   - name: Move to bin
     when: verify | failed
     command: mv phpunit.phar /usr/local/bin/phpunit
+    sudo: yes
+  - name: Remove from bin
+    command: rm -f /usr/local/bin/phpunit
     sudo: yes
