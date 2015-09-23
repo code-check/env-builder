@@ -17,21 +17,34 @@
 - name: check composer installed
   command: test -f /usr/bin/composer
   ignore_errors: true
-  register: var_composer_installed
+  register: verify_composer
   failed_when: false
-  changed_when: var_composer_installed.rc != 0
+  changed_when: verify_composer | failed
   sudo: no
 - name: install composer
   shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
-  when: var_composer_installed.rc != 0
+  when: verify_composer | failed
   sudo: yes
 - name: move composer.phar to composer
   command: mv /usr/bin/composer.phar /usr/bin/composer
-  when: var_composer_installed.rc != 0
+  when: verify_composer | failed
   sudo: yes
 
 - name: veriify phpunit installation
   command: which phpunit
-  register: verify
+  register: verify_phpunit
   failed_when: false # never be failure
-  changed_when: verify.rc != 0
+  changed_when: verify_phpunit | failed
+- name: Download phpunit.phar
+  when: verify_phpunit | failed
+  command: wget https://phar.phpunit.de/phpunit.phar
+- name: Add x permission to phpunit
+  when: verify_phpunit | failed
+  command: chmod +x phpunit.phar
+- name: Move to bin
+  when: verify_phpunit | failed
+  command: mv phpunit.phar /usr/local/bin/phpunit
+  sudo: yes
+
+# Here is the code about "how when filter (e.g. verify | failed) works"
+# https://github.com/ansible/ansible/blob/stable-1.9/lib/ansible/runner/filter_plugins/core.py
