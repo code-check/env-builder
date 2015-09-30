@@ -8,6 +8,8 @@
     - gcc
     - gpp
     - go
+    - gradle
+    - groovy
     - java
     - haskell
     - perl
