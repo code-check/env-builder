@@ -3,22 +3,22 @@
   sudo: no
   roles:
     - system
-    - php
-    - ruby
-    - node
-    - java
-    - scala
-    - python3
+    - git
     - clang
     - gcc
     - go
     - gpp
+    - gradle
     - groovy
     - haskell
+    - java
+    - node
     - ocaml
     - perl
-    - git
-    - gradle
+    - php
+    - python3
+    - ruby
+    - scala
 
 #    - mysql
 #    - postgresql

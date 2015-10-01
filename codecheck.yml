@@ -6,12 +6,12 @@
     - system
     - clang
     - gcc
-    - gpp
     - go
+    - gpp
     - gradle
     - groovy
-    - java
     - haskell
+    - java
     - perl
     - php
     - python3
