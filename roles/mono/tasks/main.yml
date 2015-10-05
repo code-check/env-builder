@@ -1,0 +1,15 @@
+- name: Install mono
+  sudo: yes
+  apt:
+    name: "{{item}}"
+  with_items:
+    - mono-complete
+    - monodevelop
+    - monodevelop-nunit
+    - nunit-console
+- name: Setup mono path
+  sudo: no
+  lineinfile:
+    dest: ~/.profile 
+    line: 'export MONO_PATH="/usr/lib/monodevelop/AddIns/NUnit"'
+    regexp: "MONO_PATH" 
