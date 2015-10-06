@@ -1,0 +1,4 @@
+---
+groovy_version: 2.4.5
+groovy_binary_url: https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-{{groovy_version}}.zip
+groovy_dir_name: groovy-{{groovy_version}}
