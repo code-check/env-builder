@@ -2,4 +2,3 @@
 dependencies:
   - { role: system }
   - { role: java }
-  - { role: groovy }

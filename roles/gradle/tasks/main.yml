@@ -1,16 +1,27 @@
 ---
-
-- name: Download Gradle 2.6
-  get_url: dest="{{ ansible_env.HOME }}/" url=https://services.gradle.org/distributions/gradle-2.6-all.zip
-  sudo: yes
-  tags: [gradle]
-
-- name: Extract Gradle
-  shell: unzip "{{ ansible_env.HOME }}/gradle-2.6-all.zip" -d /usr/local/share/ creates=/usr/local/share/gradle-2.6
-  sudo: yes
-  tags: [gradle]
-
-- name: Add Gradle executable symlink to path
-  shell: ln -s /usr/local/share/gradle-2.6/bin/gradle /usr/local/bin/gradle creates=/usr/local/bin/gradle
-  sudo: yes
-  tags: [gradle]
+  - name: Verify gradle installation
+    shell: type gradle
+    register: verify_gradle
+    failed_when: false # never fails
+    changed_when: verify_gradle | failed
+  - name: Download gradle {{gradle_version}}
+    when: verify_gradle | failed
+    get_url:
+      dest: "{{ ansible_env.HOME }}/"
+      url: https://services.gradle.org/distributions/gradle-{{gradle_version}}-bin.zip
+    tags: [gradle]
+  - name: Extract gradle
+    sudo: yes
+    when: verify_gradle | failed
+    shell: unzip "{{ ansible_env.HOME }}/gradle-{{gradle_version}}-bin.zip" -d /usr/local/share/
+    args:
+      creates: /usr/local/share/gradle-{{gradle_version}}
+    tags: [gradle]
+  - name: Add Gradle executable symlink to path
+    sudo: yes
+    when: verify_gradle | failed
+    file:
+      path: /usr/local/bin/gradle
+      src: /usr/local/share/gradle-{{gradle_version}}/bin/gradle
+      state: link
+    tags: [gradle]
