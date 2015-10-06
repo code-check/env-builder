@@ -3,6 +3,6 @@
   sudo: no
   roles:
     - system
+    - node
     - git
-    - mono
 
