@@ -1,23 +1,34 @@
 - name: check groovy installed
-  command: test -f ~/.gvm/groovy/current/bin/groovy
-  ignore_errors: true
-  register: var_groovy_installed
-  failed_when: false
-  changed_when: var_groovy_installed.rc != 0
-  sudo: no
-- name: install gvm
-  shell: curl -s get.gvmtool.net | bash
-  when: var_groovy_installed.rc != 0
-  sudo: no
+  shell: type groovy
+  register: verify_groovy
+  failed_when: verify_groovy.rc not in [0, 1]
+  changed_when: verify_groovy | failed
+- name: install groovy binary
+  when: verify_groovy | changed
+  get_url:
+    url: "{{groovy_binary_url}}"
+    dest: /tmp/{{groovy_dir_name}}.zip
+- name: unarchive groovy binary zip
+  sudo: yes
+  when: verify_groovy | failed
+  unarchive:
+    copy: no
+    src: /tmp/{{groovy_dir_name}}.zip
+    dest: /usr/local/share
+    creates: /usr/local/share/{{groovy_dir_name}}
 - name: install groovy
-  shell: /bin/bash -c "source ~/.gvm/bin/gvm-init.sh && echo 'Y' | gvm install groovy"
-  when: var_groovy_installed.rc != 0
-  sudo: no
-
-- name: export Path
-  lineinfile: >-
-    dest=~/.profile 
-    line='export PATH="$PATH:~/.gvm/groovy/current/bin"'
-    regexp=".gvm/groovy/current/bin"
-  sudo: no
+  sudo: yes
+  file:
+    path: /usr/local/bin/{{item}}
+    src: /usr/local/share/{{groovy_dir_name}}/bin/{{item}}
+    state: link
+  with_items:
+    - grape
+    - groovy
+    - groovyc
+    - groovyConsole
+    - groovydoc
+    - groovysh
+    - java2groovy
+    - startGroovy
 
