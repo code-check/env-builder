@@ -1,22 +1,9 @@
-- hosts: servers
+- hosts: all
   user: "{{ lookup('env','OS_USER_NAME') }}"
   sudo: no
-  tasks:
-  - name: verify phpunit installation
-    command: which phpunit
-    register: verify
-    failed_when: false # never fails
-    changed_when: verify.rc != 0
-  - name: Download phpunit.phar
-    when: verify | failed
-    command: wget https://phar.phpunit.de/phpunit.phar
-  - name: Add x permission to phpunit
-    when: verify | failed
-    command: chmod +x phpunit.phar
-  - name: Move to bin
-    when: verify | failed
-    command: mv phpunit.phar /usr/local/bin/phpunit
-    sudo: yes
+  roles:
+    - system
+    - php
 
 # Here is the code about "how when filter (e.g. verify | failed) works"
 # https://github.com/ansible/ansible/blob/stable-1.9/lib/ansible/runner/filter_plugins/core.py
