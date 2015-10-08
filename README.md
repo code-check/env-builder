@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/code-check/env-builder.svg?style=svg)](https://circleci.com/gh/code-check/env-builder)
+
 # Code-Check test environment builder
 This makes a virtual machine which has several programming languages.
 
