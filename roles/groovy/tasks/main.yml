@@ -1,8 +1,8 @@
 - name: check groovy installed
   shell: type groovy
   register: verify_groovy
-  failed_when: verify_groovy.rc not in [0, 1]
-  changed_when: verify_groovy | failed
+  failed_when: verify_groovy.rc not in [0, 1, 127]
+  changed_when: verify_groovy.rc in [1, 127]
 - name: install groovy binary
   when: verify_groovy | changed
   get_url:
@@ -10,7 +10,7 @@
     dest: /tmp/{{groovy_dir_name}}.zip
 - name: unarchive groovy binary zip
   sudo: yes
-  when: verify_groovy | failed
+  when: verify_groovy | changed
   unarchive:
     copy: no
     src: /tmp/{{groovy_dir_name}}.zip
