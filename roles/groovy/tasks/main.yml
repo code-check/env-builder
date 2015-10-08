@@ -1,7 +1,7 @@
 - name: check groovy installed
   shell: type groovy
   register: verify_groovy
-  failed_when: verify_groovy.rc not in [0, 1]
+  failed_when: verify_groovy.rc not in [0, 1, 127]
   changed_when: verify_groovy | failed
 - name: install groovy binary
   when: verify_groovy | changed
