@@ -1,9 +1,16 @@
 FROM ubuntu:14.04.2
 
-RUN apt-get update -y
+ENV OS_USER_NAME codecheck
+
 RUN apt-get install -y software-properties-common aptitude
 RUN apt-add-repository -y ppa:ansible/ansible
+RUN apt-get update -y
 RUN apt-get install -y ansible git curl
+
+WORKDIR /root
+RUN bash -c 'cp .bashrc .bashrc.old'
+RUN bash -c ': > .bashrc'
 RUN git clone https://github.com/code-check/env-builder.git
-WORKDIR env-builder
+WORKDIR /root/env-builder
 RUN ansible-playbook -i "localhost," -c local codecheck.yml
+WORKDIR /root
