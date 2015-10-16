@@ -7,13 +7,11 @@
   - name: magic--- ansible connection type
     debug:
       var: ansible_connection
-  - name: magic--- ansible login user
+  - name: magic--- ansible ssh login user
     debug:
       var: ansible_ssh_user
-  - name: magic--- should be ansible login user
+  - name: magic--- ansible login user
     debug:
-      var: ansible_user
-  - name: how about ...
-    sudo: yes
-    debug:
-      var: ansible_env
+      var: ansible_user_id
+  roles:
+    - node
