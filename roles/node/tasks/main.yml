@@ -1,25 +1,37 @@
-- name: Install nvm v{{nvm_version}}
-  shell: curl https://raw.githubusercontent.com/creationix/nvm/v{{nvm_version}}/install.sh | bash
+- name: Verify node installation
+  shell: type node
+  register: verify_node
+  failed_when: verify_node.rc not in [0, 1, 127]
+  changed_when: verify_node.rc in [1, 127]
+- name: Download node package
+  when: verify_node | changed
+  sudo: yes
+  shell: curl -sL https://deb.nodesource.com/setup_{{node_version}} | bash -
   args:
-    creates: ~/.nvm
-  sudo: no
-- name: Install node v{{node_version}}
-  shell: /bin/bash -c "source ~/.nvm/nvm.sh && nvm install {{node_version}} && nvm alias default {{node_version}}"
-  args:
-    creates: ~/.nvm/alias
-  sudo: no
-- name: Install npm
-  apt: name=npm
+    creates: /etc/apt/sources.list.d/nodesource.list
+- name: Install NodeJS
   sudo: yes
-- name: install typescript
-  npm: name=typescript global=yes
+  apt:
+    name: nodejs
+- name: Install altjs
   sudo: yes
-- name: install coffeescript
-  npm: name=coffee-script global=yes
+  npm:
+    name: "{{ item.name }}"
+    global: "{{ item.global }}"
+  with_items:
+    - { name: typescript, global: yes }
+    - { name: coffee-script, global: yes }
+    - { name: babel, global: yes }
+- name: Install testing frameworks
   sudo: yes
-- name: install mocha
-  npm: name=mocha global=yes
+  npm:
+    name: "{{ item.name }}"
+    global: "{{ item.global }}"
+  with_items:
+    - { name: mocha, global: yes }
+    - { name: karma, global: yes }
+- name: Install "codecheck"
   sudo: yes
-- name: Install "codecheck" node.js package.
-  npm: name=codecheck global=yes
-  sudo: yes
+  npm:
+    name: codecheck
+    global: yes
