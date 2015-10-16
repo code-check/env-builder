@@ -1,5 +1,7 @@
 - hosts: all
   sudo: no
+  roles:
+    - node
   tasks:
   - name: pong
     command: echo pong
@@ -13,5 +15,3 @@
   - name: magic--- ansible login user
     debug:
       var: ansible_user_id
-  roles:
-    - node
