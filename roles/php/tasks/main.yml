@@ -1,50 +1,29 @@
-- name: Add repository for php 5.5
-  apt_repository: repo=ppa:ondrej/php5
+- name: Add repository for php 5.6
   sudo: yes
+  apt_repository: repo=ppa:ondrej/php5-5.6
+  tags: [ "php" ]
 - name: Upgrade packages
-  apt: update_cache=yes upgrade=yes
   sudo: yes
-
-- name: Install php 5.5
+  apt: update_cache=yes upgrade=yes
+  tags: [ "php" ]
+- name: Install php packages
+  sudo: yes
   apt: pkg={{item}}
   with_items:
   - php5-cli
   - php5-curl
   - php5-mysql
   - php5-gd
-  sudo: yes
-
+  tags: [ "php" ]
 - name: check composer installed
-  command: test -f /usr/bin/composer
-  ignore_errors: true
+  shell: type composer
   register: verify_composer
-  failed_when: false
-  changed_when: verify_composer | failed
-  sudo: no
+  failed_when: verify_composer.rc not in [0, 1, 127]
+  changed_when: verify_composer.rc in [1, 127]
+  tags: [ "php" ]
 - name: install composer
-  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
-  when: verify_composer | failed
+  when: verify_composer | changed
   sudo: yes
-- name: move composer.phar to composer
-  command: mv /usr/bin/composer.phar /usr/bin/composer
-  when: verify_composer | failed
-  sudo: yes
-
-- name: veriify phpunit installation
-  command: which phpunit
-  register: verify_phpunit
-  failed_when: false # never be failure
-  changed_when: verify_phpunit | failed
-- name: Download phpunit.phar
-  when: verify_phpunit | failed
-  command: wget https://phar.phpunit.de/phpunit.phar
-- name: Add x permission to phpunit
-  when: verify_phpunit | failed
-  command: chmod +x phpunit.phar
-- name: Move to bin
-  when: verify_phpunit | failed
-  command: mv phpunit.phar /usr/local/bin/phpunit
-  sudo: yes
-
-# Here is the code about "how when filter (e.g. verify | failed) works"
-# https://github.com/ansible/ansible/blob/stable-1.9/lib/ansible/runner/filter_plugins/core.py
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+  tags: [ "php" ]
+- include: phpunit.yml
