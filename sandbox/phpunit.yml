@@ -1,9 +1,0 @@
-- hosts: all
-  user: "{{ lookup('env','OS_USER_NAME') }}"
-  sudo: no
-  roles:
-    - system
-    - php
-
-# Here is the code about "how when filter (e.g. verify | failed) works"
-# https://github.com/ansible/ansible/blob/stable-1.9/lib/ansible/runner/filter_plugins/core.py
