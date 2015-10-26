@@ -1,0 +1,16 @@
+---
+- name: veriify phpunit installation
+  command: which phpunit
+  register: verify_phpunit
+  failed_when: verify_phpunit not in [0, 1, 127]
+  changed_when: verify_phpunit in [1, 127]
+- name: Download phpunit.phar
+  when: verify_phpunit | changed
+  sudo: yes
+  get_url:
+    url: https://phar.phpunit.de/phpunit.phar
+    dest: /usr/local/bin/phpunit
+    mode: 0755
+
+# Here is the code about "how when filter (e.g. verify | failed) works"
+# https://github.com/ansible/ansible/blob/stable-1.9/lib/ansible/runner/filter_plugins/core.py

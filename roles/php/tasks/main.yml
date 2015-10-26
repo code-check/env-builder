@@ -29,22 +29,4 @@
   command: mv /usr/bin/composer.phar /usr/bin/composer
   when: verify_composer | failed
   sudo: yes
-
-- name: veriify phpunit installation
-  command: which phpunit
-  register: verify_phpunit
-  failed_when: false # never be failure
-  changed_when: verify_phpunit | failed
-- name: Download phpunit.phar
-  when: verify_phpunit | failed
-  command: wget https://phar.phpunit.de/phpunit.phar
-- name: Add x permission to phpunit
-  when: verify_phpunit | failed
-  command: chmod +x phpunit.phar
-- name: Move to bin
-  when: verify_phpunit | failed
-  command: mv phpunit.phar /usr/local/bin/phpunit
-  sudo: yes
-
-# Here is the code about "how when filter (e.g. verify | failed) works"
-# https://github.com/ansible/ansible/blob/stable-1.9/lib/ansible/runner/filter_plugins/core.py
+- include: phpunit.yml
