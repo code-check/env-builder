@@ -5,6 +5,7 @@
     url: https://phar.phpunit.de/phpunit.phar
     dest: /usr/local/bin/phpunit
     mode: 0755
+  tags: [ "php", "phpunit" ]
 
 # Here is the code about "how when filter (e.g. verify | failed) works"
 # https://github.com/ansible/ansible/blob/stable-1.9/lib/ansible/runner/filter_plugins/core.py
