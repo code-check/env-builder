@@ -2,8 +2,8 @@
 - name: veriify phpunit installation
   shell: type phpunit
   register: verify_phpunit
-  failed_when: verify_phpunit not in [0, 1, 127]
-  changed_when: verify_phpunit in [1, 127]
+  failed_when: verify_phpunit.rc not in [0, 1, 127]
+  changed_when: verify_phpunit.rc in [1, 127]
 - name: Download phpunit.phar
   when: verify_phpunit | changed
   sudo: yes
