@@ -34,7 +34,13 @@ vagrant box add ubuntu1404 https://cloud-images.ubuntu.com/vagrant/trusty/curren
 ```
 
 And then make your own Vagrantfile and hosts.  
-[Vagrantfile.sample](Vagrantfile.sample) and [hosts.sample](hosts.sample) are sample files.
+For vagrant, you have [Vagrantfile.sample](Vagrantfile.sample). Also , [hosts-vagrant](hosts-vagrant), and [hosts-local](hosts-local) are provided for hosts sample file.
+IP address setting for [Vagrantfile.sample](Vagrantfile.sample) and [hosts-vagrant](hosts-vagrant) are connected, so just running commands below would be an easiest way to start.
+
+```bash
+$ mv Vagrantfile{.sample,}
+$ mv hosts{-vagrant,}
+```
 
 Export the private key path for GitHub and OS user name of guest PC.  
 
