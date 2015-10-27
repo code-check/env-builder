@@ -1,10 +1,9 @@
 - hosts: all
-  user: "{{ lookup('env','OS_USER_NAME') }}"
   sudo: no
   roles:
     - system
-    - git
     - clang
+    - git
     - gcc
     - go
     - gpp
@@ -12,6 +11,7 @@
     - groovy
     - haskell
     - java
+    - mono
     - node
     - ocaml
     - perl
