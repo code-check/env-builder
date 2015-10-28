@@ -7,9 +7,11 @@
     - monodevelop
     - monodevelop-nunit
     - nunit-console
+  tags: [ "mono" ]
 - name: Setup mono path
   sudo: no
   lineinfile:
     dest: ~/.profile 
     line: 'export MONO_PATH="/usr/lib/monodevelop/AddIns/NUnit"'
     regexp: "MONO_PATH" 
+  tags: [ "mono" ]
