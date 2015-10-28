@@ -2,6 +2,7 @@
   sudo: yes
   apt:
     name: "{{item}}"
+    install_recommends: no
   with_items:
     - mono-complete
     - monodevelop
