@@ -1,13 +1,25 @@
 - name: Add repository for git
-  apt_repository: repo=ppa:git-core/ppa
   sudo: yes
+  apt_repository:
+    repo: "ppa:git-core/ppa"
+  tags: [ "git" ]
 - name: Upgrade packages
-  apt: update_cache=yes upgrade=yes
   sudo: yes
+  apt:
+    update_cache: yes
+    upgrade: safe
+  tags: [ "git" ]
 - name: Install git
-  apt: name=git
   sudo: yes
+  apt:
+    name: git
+  tags: [ "git" ]
 - name: copy private key
-  copy: src={{private_key_path}} dest=~/.ssh/id_rsa owner={{os_user_name}} group={{os_user_name}} mode=0600
-  sudo: no
+  when: private_key_path|default(None) != None
+  copy:
+    src: "{{private_key_path}}"
+    dest: "~/.ssh/id_rsa"
+    owner: "{{ansible_user_id}}"
+    mode: 0600
+  tags: [ "git" ]
 
