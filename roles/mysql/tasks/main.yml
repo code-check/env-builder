@@ -1,5 +1,6 @@
 - name: Install mysql
-  apt: pkg={{item}}
+  apt:
+    name: "{{ item }}"
   with_items:
   - mysql-server-5.6
   - libmysqlclient-dev

@@ -1,5 +1,7 @@
-- name: Install clang
-  apt: pkg={{item}}
+- name: Install clang packages
+  sudo: yes
+  apt:
+    pkg: "{{ item }}"
   with_items:
   - clang-3.4
   - libclang-common-3.4-dev
@@ -17,5 +19,4 @@
   - clang-format-3.4
   - python-clang-3.4
   - lldb-3.4-dev
-  sudo: yes
 

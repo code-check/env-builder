@@ -1,5 +1,6 @@
 - name: Install postgres
-  apt: pkg={{item}}
+  apt:
+    name: "{{ item }}"
   with_items:
   - postgresql
   - postgresql-contrib

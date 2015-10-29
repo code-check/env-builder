@@ -6,7 +6,8 @@
   sudo: yes
 
 - name: Install ruby
-  apt: pkg={{item}}
+  apt:
+    name: "{{ item }}"
   with_items:
   - ruby2.2
   - ruby2.2-dev
