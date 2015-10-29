@@ -1,17 +1,25 @@
 - hosts: all
   sudo: no
-  roles:
-    - node
+  vars:
+    humpty: "dumpty"
+    dummy: "{{ lookup('env', 'HELP_ME_SUPERMAN') }}"
   tasks:
+  - name: hmm what's inside?
+    debug:
+      var: dummy
   - name: pong
+    when: dummy|default("") != ""
     command: echo pong
     changed_when: false
-  - name: magic--- ansible connection type
-    debug:
-      var: ansible_connection
-  - name: magic--- ansible ssh login user
-    debug:
-      var: ansible_ssh_user
-  - name: magic--- ansible login user
-    debug:
-      var: ansible_user_id
+#  - name: magic--- ansible connection type
+#    debug:
+#      var: ansible_connection
+#  - name: magic--- ansible ssh login user
+#    debug:
+#      var: ansible_ssh_user
+#  - name: magic--- ansible login user
+#    debug:
+#      var: ansible_user_id
+#  - name: is it? --- ansible login group
+#    debug:
+#      var: ansible_group_id

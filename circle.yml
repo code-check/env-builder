@@ -1,6 +1,14 @@
+general:
+  branches:
+    only:
+      - master
 machine:
   services:
     - docker
+dependencies:
+  override:
+    - docker version
+    - docker info
 test:
   override:
     - docker build -t code-check/codecheck:latest .
