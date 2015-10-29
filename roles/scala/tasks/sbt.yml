@@ -10,7 +10,7 @@
   register: verify_sbt
   # 127: command not found
   failed_when: verify_sbt.rc not in [0, 127]
-  changed_when: "'sbt {{ sbt_version }}' not in verify_sbt.stdout"
+  changed_when:  "'This is sbt {{ sbt_version }}' not in verify_sbt.stdout"
   tags: [ 'scala', 'sbt' ]
 - name: Download sbt v{{ sbt_version }}
   when: verify_sbt | changed
@@ -45,6 +45,7 @@
   tags: [ 'scala', 'sbt' ]
 - name: Get sbt v{{ sbt_version }}
   shell: sbt about
+  register: sbt_about
   changed_when: false
-  failed_when: "'sbt {{ sbt_version }}' not in verify_sbt.stdout"
+  failed_when: "'This is sbt {{ sbt_version }}' not in sbt_about.stdout"
   tags: [ 'scala', 'sbt' ]
