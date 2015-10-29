@@ -15,7 +15,7 @@
     name: git
   tags: [ "git" ]
 - name: copy private key
-  when: private_key_path|default(None) != None
+  when: private_key_path | default("") != ""
   copy:
     src: "{{private_key_path}}"
     dest: "~/.ssh/id_rsa"
