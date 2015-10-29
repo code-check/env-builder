@@ -12,7 +12,9 @@
   sudo: yes
 
 - name: Install Oracle Java 8
-  apt: name={{item}} state=latest
+  apt:
+    name: "{{ item }}"
+    state: latest
   with_items:
     - oracle-java8-installer
     - ca-certificates
@@ -20,5 +22,6 @@
   sudo: yes
 
 - name: Install maven
-  apt: pkg=maven
+  apt:
+    name: maven
   sudo: yes
