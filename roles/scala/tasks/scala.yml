@@ -4,13 +4,13 @@
   file:
     path: "{{ scala_lib_path }}"
     state: directory
-  tags: [ 'scala' ]
+  tags: [ 'scala', 'scala-lang' ]
 - name: Verify scala existance
   shell: scala -version
   register: verify_scala
   failed_when: verify_scala.rc not in [0, 127]
   changed_when:  "'{{ scala_version }}' not in verify_scala.stderr"
-  tags: [ 'scala' ]
+  tags: [ 'scala', 'scala-lang' ]
 - name: Download scala v{{ scala_version }}
   when: verify_scala | changed
   sudo: yes
@@ -18,7 +18,7 @@
     url: "{{ scala_download_url }}"
     dest: /tmp/{{ scala_archive_file }}
     force: no
-  tags: [ 'scala' ]
+  tags: [ 'scala', 'scala-lang' ]
 - name: Unarvhice Scala
   when: verify_scala | changed
   sudo: yes
@@ -26,7 +26,7 @@
     copy: no
     src: /tmp/{{ scala_archive_file }}
     dest: "{{ scala_lib_path }}"
-  tags: [ 'scala' ]
+  tags: [ 'scala', 'scala-lang' ]
 - name: Link scala commands
   sudo: yes
   file:
@@ -42,4 +42,4 @@
     - fsc
     - sbaz
     - sbaz-setup
-  tags: [ 'scala' ]
+  tags: [ 'scala', 'scala-lang' ]
