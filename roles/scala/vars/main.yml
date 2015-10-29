@@ -1,29 +1,27 @@
 ---
-os_user_name: "{{ lookup('env','OS_USER_NAME') }}"
-
-scala_version: "2.11.6"
-scala_version_name: "scala-{{scala_version}}"
-scala_archive_file: "{{scala_version_name}}.tgz"
-scala_download_url: "http://www.scala-lang.org/files/archive/{{scala_archive_file}}"
+scala_version: "2.11.7"
+scala_version_name: "scala-{{ scala_version }}"
+scala_archive_file: "{{ scala_version_name }}.tgz"
+scala_download_url: "http://www.scala-lang.org/files/archive/{{ scala_archive_file }}"
 
 scala_lib_path: "/usr/share/scala"
-scala_lib_path_target: "{{scala_lib_path}}/{{scala_version_name}}"
+scala_lib_path_target: "{{ scala_lib_path }}/{{ scala_version_name }}"
 scala_link_target: "/usr/bin"
 
 sbt_version: "0.13.8"
 sbt_archive_name: "sbt"
-sbt_archive_file: "{{sbt_archive_name}}.tgz"
-sbt_download_url: "https://dl.bintray.com/sbt/native-packages/sbt/{{sbt_version}}/sbt-{{sbt_version}}.tgz"
+sbt_archive_file: "{{ sbt_archive_name }}.tgz"
+sbt_download_url: "https://dl.bintray.com/sbt/native-packages/sbt/{{ sbt_version }}/sbt-{{ sbt_version }}.tgz"
 
 sbt_lib_path: "/usr/share/sbt"
-sbt_lib_path_target: "{{sbt_lib_path}}/{{sbt_version}}"
+sbt_lib_path_target: "{{ sbt_lib_path }}/{{ sbt_version }}"
 sbt_link_target: "/usr/bin"
 
 activator_version: "1.3.2"
-activator_archive_name: "activator-{{activator_version}}-minimal"
-activator_archive_file: "{{activator_archive_name}}.zip"
-activator_download_url: "http://downloads.typesafe.com/typesafe-activator/{{activator_version}}/typesafe-activator-{{activator_version}}-minimal.zip"
+activator_archive_name: "activator-{{ activator_version }}-minimal"
+activator_archive_file: "{{ activator_archive_name }}.zip"
+activator_download_url: "http://downloads.typesafe.com/typesafe-activator/{{ activator_version }}/typesafe-activator-{{ activator_version }}-minimal.zip"
 
 activator_lib_path: "/usr/share/activator"
-activator_lib_path_target: "{{activator_lib_path}}/{{activator_version}}"
+activator_lib_path_target: "{{ activator_lib_path }}/{{ activator_version }}"
 activator_link_target: "/usr/bin"
