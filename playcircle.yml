@@ -1,0 +1,24 @@
+- hosts: all
+  sudo: no
+  roles:
+    - system
+    - clang
+    - git
+    - gcc
+    - go
+    - gpp
+    - gradle
+    - groovy
+    - haskell
+    - java
+    # - mono
+    - node
+    - ocaml
+    - perl
+    - php
+    - python3
+    - ruby
+    - scala
+
+#    - mysql
+#    - postgresql

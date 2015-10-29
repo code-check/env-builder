@@ -9,5 +9,5 @@ WORKDIR /root
 RUN bash -c 'cp .bashrc .bashrc.old && : >.bashrc'
 RUN git clone https://github.com/code-check/env-builder.git
 WORKDIR /root/env-builder
-RUN ansible-playbook -i hosts-local all.yml
+RUN ansible-playbook -i hosts-local playcircle.yml
 WORKDIR /root
