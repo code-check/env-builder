@@ -21,7 +21,7 @@
   with_items:
     - { name: typescript, global: yes }
     - { name: coffee-script, global: yes }
-    - { name: babel, global: yes }
+    - { name: babel-cli, global: yes }
 - name: Install testing frameworks
   sudo: yes
   npm:
