@@ -1,7 +1,10 @@
 - name: Install Python3
-  apt: name={{item}} state=latest
+  sudo: yes
+  apt:
+    name: {{ item }}
+    state: latest
   with_items:
     - python3-all-dev
     - python3-setuptools
     - python3-pip
-  sudo: yes
+- include: testframeworks-3x.yml
