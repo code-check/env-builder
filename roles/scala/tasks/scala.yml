@@ -40,6 +40,4 @@
     - scaladoc
     - scalap
     - fsc
-    - sbaz
-    - sbaz-setup
   tags: [ 'scala', 'scala-lang' ]
