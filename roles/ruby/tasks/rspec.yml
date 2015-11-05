@@ -1,0 +1,4 @@
+- name: Install rspec
+  gem:
+    name: rspec
+  tags: [ "ruby", "gem", "rspec" ]

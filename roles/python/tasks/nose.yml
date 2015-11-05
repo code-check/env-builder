@@ -1,0 +1,16 @@
+- name: Set fact for version 2.x
+  when: version == "2.x"
+  set_fact:
+    pip: pip2
+  tags: [ "python", "nose" ]
+- name: Set fact for version 3.x
+  when: version == "3.x"
+  set_fact:
+    pip: pip3
+  tags: [ "python", "nose" ]
+- name: install nose
+  sudo: yes
+  pip:
+    name: nose
+    executable: "{{ pip }}"
+  tags: [ "python", "nose" ]

@@ -1,0 +1,4 @@
+- include: python-lang.yml version="2.x"
+- include: python-lang.yml version="3.x"
+- include: nose.yml version="2.x"
+- include: nose.yml version="3.x"
