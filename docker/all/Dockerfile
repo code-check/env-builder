@@ -31,3 +31,10 @@ RUN git clone https://github.com/skohar/cache-for-scala-sbt.git
 RUN cd cache-for-scala-sbt && git checkout scala2.11.7-sbt-1.13.5 && sbt compile
 WORKDIR /root
 RUN rm -r /root/tmp
+
+# install Unity
+RUN wget http://download.unity3d.com/download_unity/unity-editor-5.1.0f3+2015091501_amd64.deb
+RUN dpkg /root/unity-editor-5.1.0f3+2015091501_amd64.deb
+RUN apt-get update && apt-get install -f
+RUN apt-get install xvfb
+RUN apt-get install pulseaudio
