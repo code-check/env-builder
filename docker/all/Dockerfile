@@ -38,3 +38,6 @@ RUN dpkg /root/unity-editor-5.1.0f3+2015091501_amd64.deb
 RUN apt-get update && apt-get install -f
 RUN apt-get install xvfb
 RUN apt-get install pulseaudio
+RUN echo '#!/bin/bash' >> /usr/bin/xvfb-unity
+RUN echo 'xvfb-run /opt/Unity/Editor/Unity -projectPath $1 -batchmode -nographics -executeMethod $2 -resultFilePath=$3 -logFile'
+RUN chmod 744 /usr/bin/xvfb-unity
