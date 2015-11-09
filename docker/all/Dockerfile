@@ -12,7 +12,7 @@ RUN bash -c 'cp .bashrc .bashrc.old'
 RUN bash -c ': > .bashrc'
 RUN git clone https://github.com/code-check/env-builder.git
 WORKDIR /root/env-builder
-RUN ansible-playbook -i hosts-local codecheck.yml
+RUN ansible-playbook -i ansible/hosts-local ansible/codecheck.yml
 WORKDIR /root
 
 # Recover bashrc
