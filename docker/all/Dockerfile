@@ -34,8 +34,9 @@ RUN rm -r /root/tmp
 
 # install Unity
 RUN wget http://download.unity3d.com/download_unity/unity-editor-5.1.0f3+2015091501_amd64.deb
-RUN dpkg -i /root/unity-editor-5.1.0f3+2015091501_amd64.deb
-RUN apt-get update && apt-get install -f
+#install gdebi to handle dependencies for you
+RUN apt-get install -y gdebi
+RUN gdebi /root/unity-editor-5.1.0f3+2015091501_amd64.deb
 RUN apt-get install xvfb
 RUN apt-get install pulseaudio
 RUN echo '#!/bin/bash' >> /usr/bin/xvfb-unity
