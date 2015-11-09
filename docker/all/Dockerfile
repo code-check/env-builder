@@ -33,7 +33,7 @@ WORKDIR /root
 RUN rm -r /root/tmp
 
 # install Unity
-RUN wget http://download.unity3d.com/download_unity/unity-editor-5.1.0f3+2015091501_amd64.deb
+RUN wget --quiet http://download.unity3d.com/download_unity/unity-editor-5.1.0f3+2015091501_amd64.deb
 #install gdebi to handle dependencies for you
 RUN apt-get install -y gdebi
 RUN gdebi /root/unity-editor-5.1.0f3+2015091501_amd64.deb
