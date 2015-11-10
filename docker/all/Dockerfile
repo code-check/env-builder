@@ -40,5 +40,5 @@ RUN gdebi /root/unity-editor-5.1.0f3+2015091501_amd64.deb
 RUN apt-get install -y xvfb
 RUN apt-get install -y pulseaudio
 RUN echo '#!/bin/bash' >> /usr/bin/xvfb-unity
-RUN echo '/usr/bin/xvfb-unity /opt/Unity/Editor/Unity -projectPath $1 -batchmode -nographics -executeMethod $2 -resultFilePath=$3 -logFile'
+RUN echo '/usr/bin/xvfb-unity /opt/Unity/Editor/Unity -projectPath $1 -batchmode -nographics -executeMethod $2 -resultFilePath=$3 -logFile' >> /usr/bin/xvfb-unity
 RUN chmod 744 /usr/bin/xvfb-unity
