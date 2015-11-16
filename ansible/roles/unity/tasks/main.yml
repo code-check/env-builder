@@ -1,0 +1,23 @@
+# install Unity
+
+- name: Download Unity 5.1.0 from {{unity_download_url}}
+  get_url: url={{unity_download_url}}
+          dest=/tmp/{{unity_file}}
+          force=no
+  sudo: yes
+
+- name: Install gdebi to handle dependency problem
+  sudo: yes
+  apt: name=gdebi state=present
+
+- name: Unpack and install Unity package
+  command: /usr/bin/gdebi /tmp/{{unity_file}}
+
+- name: Install xvfb
+  apt: name=xvfb state=present
+
+- name: Install pulseaudio
+  apt: name=pulseaudio state=present
+
+- name: Create xvfb-unity executable
+  template: src=../templates/bin.j2 dest=/usr/bin/xvfb-unity mode=744
