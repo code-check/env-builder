@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/usr/bin/xvfb-run /opt/Unity/Editor/Unity -projectPath $1 -batchmode -nographics -executeMethod $2 -resultFilePath=$3 -logFile
