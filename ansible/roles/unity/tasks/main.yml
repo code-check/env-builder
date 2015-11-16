@@ -20,4 +20,4 @@
   apt: name=pulseaudio state=present
 
 - name: Create xvfb-unity executable
-  template: src=../templates/bin.j2 dest=/usr/bin/xvfb-unity mode=744
+  template: src=../templates/xvfb-unity.j2 dest=/usr/bin/xvfb-unity mode=744
