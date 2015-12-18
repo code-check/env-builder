@@ -1,7 +1,7 @@
 FROM ubuntu:14.04.2
 
 ENV OS_USER_NAME codecheck
-ARG CLONE_BRANCH master
+ARG CLONE_BRANCH=master
 
 RUN apt-get install -y software-properties-common aptitude
 RUN apt-add-repository -y ppa:ansible/ansible
