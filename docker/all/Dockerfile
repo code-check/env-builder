@@ -1,7 +1,7 @@
 FROM ubuntu:14.04.2
 
 ENV OS_USER_NAME codecheck
-ARG branch master
+ARG CLONE_BRANCH master
 
 RUN apt-get install -y software-properties-common aptitude
 RUN apt-add-repository -y ppa:ansible/ansible
@@ -11,7 +11,7 @@ RUN apt-get install -y ansible git curl
 WORKDIR /root
 RUN bash -c 'cp .bashrc .bashrc.old'
 RUN bash -c ': > .bashrc'
-RUN git clone https://github.com/code-check/env-builder.git --branch=${branch}
+RUN git clone https://github.com/code-check/env-builder.git --branch=${CLONE_BRANCH}
 WORKDIR /root/env-builder
 RUN ansible-playbook -i ansible/hosts-local ansible/codecheck.yml
 WORKDIR /root
