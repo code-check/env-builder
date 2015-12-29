@@ -1,0 +1,5 @@
+- name: Run playbook by role
+  hosts: all
+  roles:
+    - role: "{{ role }}"
+      sudo: "{{ sudo | default(no) }}"
