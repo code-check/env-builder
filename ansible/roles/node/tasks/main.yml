@@ -30,6 +30,15 @@
   with_items:
     - { name: mocha, global: yes }
     - { name: karma, global: yes }
+- name: Install build tools
+  sudo: yes
+  npm:
+    name: "{{ item.name }}"
+    global: "{{ item.global }}"
+  with_items:
+    - { name: grunt-cli, global: yes }
+    - { name: gulp, global: yes }
+    - { name: webpack, global: yes}
 - name: Install "codecheck"
   sudo: yes
   npm:
