@@ -39,8 +39,3 @@
     - { name: grunt-cli, global: yes }
     - { name: gulp, global: yes }
     - { name: webpack, global: yes}
-- name: Install "codecheck"
-  sudo: yes
-  npm:
-    name: codecheck
-    global: yes
