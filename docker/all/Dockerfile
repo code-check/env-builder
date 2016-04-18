@@ -32,3 +32,5 @@ RUN git clone https://github.com/skohar/cache-for-scala-sbt.git
 RUN cd cache-for-scala-sbt && git checkout scala2.11.7-sbt-1.13.5 && sbt compile
 WORKDIR /root
 RUN rm -r /root/tmp
+
+RUN gem install bundler
