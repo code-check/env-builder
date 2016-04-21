@@ -13,7 +13,7 @@ RUN bash -c ': > .bashrc'
 RUN git clone https://github.com/code-check/env-builder.git
 WORKDIR /root/env-builder
 RUN ansible-playbook -i ansible/hosts-local ansible/codecheck.yml
-RUN npm install -g codecheck@0.5.2
+RUN npm install -g codecheck@0.5.3
 WORKDIR /root
 
 # Recover bashrc
