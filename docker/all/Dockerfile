@@ -21,6 +21,11 @@ RUN bash -c 'cat .bashrc.old >> .bashrc'
 RUN bash -c 'rm .bashrc.old'
 RUN bash -c 'cat .bashrc >> .profile'
 
+RUN wget https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-2.4.5.zip \
+  && unzip apache-groovy-binary-2.4.5.zip -d /usr/local/share/ \
+  && rm apache-groovy-binary-2.4.5.zip
+ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
+
 # scala environment
 WORKDIR /root/tmp
 RUN sbt -sbt-version 0.13.5
