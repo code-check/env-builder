@@ -19,3 +19,9 @@ docker run --rm -it all which codecheck
 docker run --rm -it all codecheck
 docker run --rm -it all bash --login -c 'which codecheck'
 docker run --rm -it all bash --login -c 'codecheck'
+docker run --rm -it all type composer
+docker run --rm -it all which composer
+docker run --rm -it all composer --version
+docker run --rm -it all bash --login -c 'type composer'
+docker run --rm -it all bash --login -c 'which composer'
+docker run --rm -it all bash --login -c 'composer --version'
