@@ -49,4 +49,4 @@ RUN rm -r /root/tmp
 RUN gem install bundler
 
 RUN mkdir .go
-RUN echo 'export GOPATH="$HOME/.go"' >> '.profile'
+ENV GOPATH /root/.go
