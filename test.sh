@@ -5,3 +5,5 @@ kill %1
 
 docker run -it all bash groovy
 docker run -it all bash --login -c 'groovy'
+docker run -it all bash gradle
+docker run -it all bash --login -c 'gradle'

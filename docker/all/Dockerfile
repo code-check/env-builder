@@ -21,6 +21,11 @@ RUN bash -c 'cat .bashrc.old >> .bashrc'
 RUN bash -c 'rm .bashrc.old'
 RUN bash -c 'cat .bashrc >> .profile'
 
+RUN wget https://services.gradle.org/distributions/gradle-2.7-bin.zip \
+  && unzip gradle-2.7-bin.zip -d /usr/local/share/ \
+  && rm gradle-2.7-bin.zip
+ENV PATH $PATH:/usr/local/share/gradle-2.7/bin
+
 RUN wget https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-2.4.5.zip \
   && unzip apache-groovy-binary-2.4.5.zip -d /usr/local/share/ \
   && rm apache-groovy-binary-2.4.5.zip
