@@ -7,4 +7,4 @@ dependencies:
     - docker info
 test:
   override:
-    - bash -e test.sh
+    - bash -eux test.sh
