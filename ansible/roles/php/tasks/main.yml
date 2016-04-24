@@ -22,14 +22,7 @@
   - php5-pgsql
   - php5-sqlite
   tags: [ "php" ]
-- name: check composer installed
-  shell: type composer
-  register: verify_composer
-  failed_when: verify_composer.rc not in [0, 1, 127]
-  changed_when: verify_composer.rc in [1, 127]
-  tags: [ "php" ]
 - name: install composer
-  when: verify_composer | changed
   sudo: yes
   shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
   tags: [ "php" ]
