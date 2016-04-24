@@ -1,5 +1,0 @@
----
-oracle_java_version: 8
-gradle_version: "2.7"
-gradle_zipfile: "gradle-{{gradle_version}}-all.zip"
-gradle_folder:  "gradle-{{gradle_version}}"

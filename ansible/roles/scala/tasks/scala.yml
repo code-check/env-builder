@@ -5,14 +5,7 @@
     path: "{{ scala_lib_path }}"
     state: directory
   tags: [ 'scala', 'scala-lang' ]
-- name: Verify scala existance
-  shell: scala -version
-  register: verify_scala
-  failed_when: verify_scala.rc not in [0, 127]
-  changed_when:  "'{{ scala_version }}' not in verify_scala.stderr"
-  tags: [ 'scala', 'scala-lang' ]
 - name: Download scala v{{ scala_version }}
-  when: verify_scala | changed
   sudo: yes
   get_url:
     url: "{{ scala_download_url }}"
@@ -20,7 +13,6 @@
     force: no
   tags: [ 'scala', 'scala-lang' ]
 - name: Unarvhice Scala
-  when: verify_scala | changed
   sudo: yes
   unarchive:
     copy: no
