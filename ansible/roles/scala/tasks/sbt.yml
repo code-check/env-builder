@@ -5,15 +5,7 @@
     path: "{{ sbt_lib_path }}"
     state: directory
   tags: [ 'scala', 'sbt' ]
-- name: Verify sbt existance
-  shell: sbt about
-  register: verify_sbt
-  # 127: command not found
-  failed_when: verify_sbt.rc not in [0, 127]
-  changed_when:  "'This is sbt {{ sbt_version }}' not in verify_sbt.stdout"
-  tags: [ 'scala', 'sbt' ]
 - name: Download sbt v{{ sbt_version }}
-  when: verify_sbt | changed
   get_url:
     url: "{{ sbt_download_url }}"
     dest: /tmp/{{ sbt_archive_file }}
@@ -21,7 +13,6 @@
   sudo: yes
   tags: [ 'scala', 'sbt' ]
 - name: Unarchive sbt
-  when: verify_sbt | changed
   sudo: yes
   unarchive:
     copy: no
@@ -30,7 +21,6 @@
   tags: [ 'scala', 'sbt' ]
 - name: Move sbt, rename with version name
   sudo: yes
-  when: verify_sbt | changed
   shell: mv -f /tmp/{{ sbt_archive_name }} {{ sbt_lib_path_target }}
   tags: [ 'scala', 'sbt' ]
 - name: Link sbt
