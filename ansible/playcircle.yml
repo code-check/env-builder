@@ -7,12 +7,9 @@
     - gcc
     - go
     - gpp
-    - gradle
-    - groovy
     - haskell
     - java
     # - mono
-    - node
     - ocaml
     - perl
     - php

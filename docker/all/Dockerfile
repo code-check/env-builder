@@ -13,13 +13,26 @@ RUN bash -c ': > .bashrc'
 RUN git clone https://github.com/code-check/env-builder.git
 WORKDIR /root/env-builder
 RUN ansible-playbook -i ansible/hosts-local ansible/codecheck.yml
-RUN npm install -g codecheck@0.5.3
 WORKDIR /root
 
 # Recover bashrc
 RUN bash -c 'cat .bashrc.old >> .bashrc'
 RUN bash -c 'rm .bashrc.old'
 RUN bash -c 'cat .bashrc >> .profile'
+
+RUN wget https://services.gradle.org/distributions/gradle-2.7-bin.zip \
+  && unzip gradle-2.7-bin.zip -d /usr/local/share/ \
+  && rm gradle-2.7-bin.zip
+ENV PATH $PATH:/usr/local/share/gradle-2.7/bin
+
+RUN wget https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-2.4.5.zip \
+  && unzip apache-groovy-binary-2.4.5.zip -d /usr/local/share/ \
+  && rm apache-groovy-binary-2.4.5.zip
+ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
+
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install -g codecheck@0.5.3 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
 
 # scala environment
 WORKDIR /root/tmp
@@ -36,4 +49,4 @@ RUN rm -r /root/tmp
 RUN gem install bundler
 
 RUN mkdir .go
-RUN echo 'export GOPATH="$HOME/.go"' >> '.profile'
+ENV GOPATH /root/.go
