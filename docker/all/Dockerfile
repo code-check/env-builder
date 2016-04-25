@@ -50,3 +50,4 @@ RUN gem install bundler
 
 RUN mkdir .go
 ENV GOPATH /root/.go
+ENV PATH $PATH:/usr/local/go/bin
