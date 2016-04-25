@@ -13,10 +13,10 @@ docker run -it all which node
 docker run -it all node --version
 docker run -it all bash --login -c 'which node'
 docker run -it all bash --login -c 'node --version'
-docker run -it all which all
-docker run -it all all
-docker run -it all bash --login -c 'which all'
-docker run -it all bash --login -c 'all'
+docker run -it all which codecheck
+docker run -it all codecheck
+docker run -it all bash --login -c 'which codecheck'
+docker run -it all bash --login -c 'codecheck'
 docker run -it all which composer
 docker run -it all composer --version
 docker run -it all bash --login -c 'type composer'
