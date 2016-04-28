@@ -1,6 +1,4 @@
 #!/bin/bash -e
-docker build -t all -f docker/all/Dockerfile docker/all
-
 docker run -it all which groovy
 docker run -it all groovy --version
 docker run -it all bash --login -c 'which groovy'

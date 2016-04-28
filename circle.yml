@@ -1,10 +1,8 @@
 machine:
   services:
     - docker
-dependencies:
-  override:
-    - docker version
-    - docker info
 test:
+  pre:
+    - docker build -t all -f docker/all/Dockerfile docker/all
   override:
     - bash -eux test.sh
