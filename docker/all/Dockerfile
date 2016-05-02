@@ -35,6 +35,26 @@ RUN apt-get install -y nodejs
 RUN npm install -g codecheck@0.5.3 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
 
 # scala environment
+
+RUN mkdir -p /usr/local/share/scala/2.11.7
+RUN wget http://www.scala-lang.org/files/archive/scala-2.11.7.tgz \
+  && tar xzf scala-2.11.7.tgz -C /usr/local/share/scala/2.11.7 \
+  && rm scala-2.11.7.tgz
+RUN ln -s /usr/local/share/scala/2.11.7/scala-2.11.7/bin/scala /usr/local/bin/scala
+RUN ln -s /usr/local/share/scala/2.11.7/scala-2.11.7/bin/fsc /usr/local/bin/fsc
+
+RUN mkdir -p /usr/local/share/sbt/0.13.9
+RUN wget https://dl.bintray.com/sbt/native-packages/sbt/0.13.9/sbt-0.13.9.tgz \
+  && tar xzf sbt-0.13.9.tgz -C /usr/local/share/sbt/0.13.9 \
+  && rm sbt-0.13.9.tgz
+RUN ln -s /usr/local/share/sbt/0.13.9/sbt/bin/sbt /usr/local/bin/sbt
+
+RUN mkdir -p /usr/local/share/activator/1.3.2
+RUN wget http://downloads.typesafe.com/typesafe-activator/1.3.2/typesafe-activator-1.3.2-minimal.zip \
+  && unzip typesafe-activator-1.3.2-minimal.zip -d /usr/local/share/activator/1.3.2 \
+  && rm typesafe-activator-1.3.2-minimal.zip
+RUN ln -s /usr/local/share/activator/1.3.2/activator-1.3.2-minimal/activator /usr/local/bin/activator
+
 WORKDIR /root/tmp
 RUN sbt -sbt-version 0.13.5
 RUN sbt -sbt-version 0.13.6
