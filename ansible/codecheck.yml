@@ -1,7 +1,6 @@
 - hosts: all
   sudo: no
   roles:
-    - system
     - clang
     - gcc
     - go
