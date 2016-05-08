@@ -7,4 +7,5 @@ dependencies:
     - docker info
 test:
   override:
+    - docker build -t all -f docker/all/Dockerfile docker/all
     - bash -eux test.sh

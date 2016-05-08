@@ -1,7 +1,6 @@
 - hosts: all
   sudo: no
   roles:
-    - system
     - clang
     - git
     - gcc
@@ -15,7 +14,6 @@
     - php
     - python
     - ruby
-    - scala
 
 #    - mysql
 #    - postgresql
