@@ -4,8 +4,9 @@ ENV OS_USER_NAME codecheck
 
 RUN apt-get install -y software-properties-common aptitude
 RUN apt-add-repository -y ppa:ansible/ansible
-RUN apt-get update -y
-RUN apt-get install -y ansible git curl
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y ansible git curl unzip
 
 WORKDIR /root
 RUN bash -c 'cp .bashrc .bashrc.old'
