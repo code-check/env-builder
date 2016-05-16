@@ -1,7 +1,0 @@
-- name: Install ocaml
-  apt:
-    name: "{{ item }}"
-  with_items:
-  - ocaml
-  sudo: yes
-

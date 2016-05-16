@@ -1,7 +1,0 @@
-- name: Install gcc 4.8
-  apt:
-    name: "{{ item }}"
-  with_items:
-  - gcc-4.8
-  sudo: yes
-
