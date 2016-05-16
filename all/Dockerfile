@@ -91,7 +91,7 @@ ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
 RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
 RUN apt-get install -y nodejs && \
   rm -rf /var/lib/apt/lists/*
-RUN npm install -g codecheck@0.5.3 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
+RUN npm install -g codecheck@0.5.4 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
 
 RUN apt-add-repository -y ppa:webupd8team/java && \
   apt-get update && \
