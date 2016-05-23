@@ -79,6 +79,7 @@ docker run --rm -it all ruby --version
 docker run --rm -it all bash --login -c 'type ruby'
 docker run --rm -it all bash --login -c 'which ruby'
 docker run --rm -it all bash --login -c 'ruby --version'
+docker run --rm -it all which rspec
 docker run --rm -it all which java
 docker run --rm -it all java -version
 docker run --rm -it all bash --login -c 'type java'
