@@ -89,7 +89,7 @@ docker run --rm -it all which php
 docker run --rm -it all php --version
 docker run --rm -it all bash --login -c 'which php'
 docker run --rm -it all bash --login -c 'php --version'
-[[ "`docker run --rm all php --version`" == *'5.6.21-7'* ]]
+[[ "`docker run --rm all php --version`" == *'5.6.21-9'* ]]
 docker run --rm -it all which phpunit
 docker run --rm -it all phpunit --version
 docker run --rm -it all which python
@@ -107,4 +107,9 @@ docker run --rm -it all mono --version
 docker run --rm -it all bash --login -c 'which mono'
 docker run --rm -it all bash --login -c 'mono --version'
 [[ "`docker run --rm all mono --version`" == *'3.2.8'* ]]
+docker run --rm -it all which rspec
+docker run --rm -it all rspec --version
+docker run --rm -it all bash --login -c 'which rspec'
+docker run --rm -it all bash --login -c 'rspec --version'
+[[ "`docker run --rm all rspec --version`" == *'3.4.4'* ]]
 

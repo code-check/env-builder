@@ -65,6 +65,7 @@ RUN apt-add-repository -y ppa:brightbox/ruby-ng && \
   rm -rf /var/lib/apt/lists/*
 RUN gem update
 RUN gem install bundler
+RUN gem install rspec
 ENV PATH $PATH:/room/.gem/ruby/2.2.0/bin
 
 # php
