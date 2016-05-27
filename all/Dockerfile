@@ -143,6 +143,19 @@ RUN wget http://downloads.typesafe.com/typesafe-activator/1.3.2/typesafe-activat
   && rm typesafe-activator-1.3.2-minimal.zip
 RUN ln -s /usr/local/share/activator/1.3.2/activator-1.3.2-minimal/activator /usr/local/bin/activator
 
+RUN apt-get update && \
+  apt-get install sbcl && \
+  rm -rf /var/lib/apt/lists/*
+
+RUN curl -O https://beta.quicklisp.org/quicklisp.lisp && \
+  echo '(quicklisp-quickstart:install)\n(ql::without-prompting(ql:add-to-init-file))\n' > install.lisp && \
+  sbcl --noinform --quit --load quicklisp.lisp --load install.lisp && \
+  mv quicklisp .quicklisp && \
+  sed -i -e 's,quicklisp/setup.lisp,.quicklisp/setup.lisp,' .sbclrc && \
+  echo '(ql:quickload :prove)\n(quit)\n' > install.lisp && \
+  sbcl --noinform --quit --load install.lisp && \
+  rm install.lisp  quicklisp.lisp
+
 RUN mkdir .go
 ENV GOPATH /root/.go
 ENV PATH $PATH:/usr/local/go/bin

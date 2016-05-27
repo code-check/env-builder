@@ -112,4 +112,9 @@ docker run --rm -it all rspec --version
 docker run --rm -it all bash --login -c 'which rspec'
 docker run --rm -it all bash --login -c 'rspec --version'
 [[ "`docker run --rm all rspec --version`" == *'3.4.4'* ]]
+docker run --rm -it all which sbcl
+docker run --rm -it all sbcl --version
+docker run --rm -it all bash --login -c 'which sbcl'
+docker run --rm -it all bash --login -c 'sbcl --version'
+[[ "`docker run --rm all sbcl --version`" == *'1.1.14'* ]]
 
