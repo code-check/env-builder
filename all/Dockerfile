@@ -6,11 +6,10 @@ WORKDIR /root
 RUN apt-get update && \
   apt-get upgrade -y && \
   apt-get install -y software-properties-common aptitude && \
-  apt-add-repository -y ppa:ansible/ansible && \
   apt-add-repository -y ppa:git-core/ppa && \
   apt-get update && \
   apt-get upgrade -y && \
-  apt-get install -y ansible git curl unzip wget && \
+  apt-get install -y git curl unzip wget && \
   rm -rf /var/lib/apt/lists/*
 
 # go
