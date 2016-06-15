@@ -89,7 +89,7 @@ docker run --rm -it all which php
 docker run --rm -it all php --version
 docker run --rm -it all bash --login -c 'which php'
 docker run --rm -it all bash --login -c 'php --version'
-[[ "`docker run --rm all php --version`" == *'5.6.21-9'* ]]
+[[ "`docker run --rm all php --version`" == *'5.6.22-4'* ]]
 docker run --rm -it all which phpunit
 docker run --rm -it all phpunit --version
 docker run --rm -it all which python
