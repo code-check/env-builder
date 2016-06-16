@@ -3,13 +3,13 @@ FROM ubuntu:14.04.2
 ENV OS_USER_NAME codecheck
 WORKDIR /root
 
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y software-properties-common aptitude && \
+RUN apt-get update -qq && \
+  apt-get upgrade -qqy && \
+  apt-get install -qqy software-properties-common aptitude && \
   apt-add-repository -y ppa:git-core/ppa && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y git curl unzip wget && \
+  apt-get update -qq && \
+  apt-get upgrade -qqy && \
+  apt-get install -qqy git curl unzip wget && \
   rm -rf /var/lib/apt/lists/*
 
 # go
@@ -19,48 +19,48 @@ RUN wget https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz && \
 ENV PATH $PATH:/usr/local/go/bin
 
 # clang
-RUN apt-get update && \
-  apt-get install -y gcc-4.8 g++-4.8 && \
+RUN apt-get update -qq && \
+  apt-get install -qqy gcc-4.8 g++-4.8 && \
   rm -rf /var/lib/apt/lists/*
-RUN apt-get update && \
-  apt-get install -y clang-3.4 libclang-common-3.4-dev libclang-3.4-dev libclang1-3.4 libclang1-3.4-dbg libllvm-3.4-ocaml-dev libllvm3.4 libllvm3.4-dbg lldb-3.4 llvm-3.4 llvm-3.4-dev llvm-3.4-runtime clang-modernize-3.4 clang-format-3.4 python-clang-3.4 lldb-3.4-dev && \
+RUN apt-get update -qq && \
+  apt-get install -qqy clang-3.4 libclang-common-3.4-dev libclang-3.4-dev libclang1-3.4 libclang1-3.4-dbg libllvm-3.4-ocaml-dev libllvm3.4 libllvm3.4-dbg lldb-3.4 llvm-3.4 llvm-3.4-dev llvm-3.4-runtime clang-modernize-3.4 clang-format-3.4 python-clang-3.4 lldb-3.4-dev && \
   rm -rf /var/lib/apt/lists/*
 
 # haskell
 RUN apt-add-repository -y ppa:hvr/ghc && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y ghc-7.8.4 ghc-haddock ghc-prof alex-3.1.4 happy-1.19.5 cabal-install-1.22 && \
+  apt-get update -qq && \
+  apt-get upgrade -qqy && \
+  apt-get install -qqy ghc-7.8.4 ghc-haddock ghc-prof alex-3.1.4 happy-1.19.5 cabal-install-1.22 && \
   rm -rf /var/lib/apt/lists/*
 RUN ln -s /usr/bin/cabal-1.22 /usr/bin/cabal
 RUN cabal update
 RUN cabal install hspec
 
 # ocaml
-RUN apt-get update && \
-  apt-get upgrade && \
-  apt-get install -y ocaml && \
+RUN apt-get update -qq && \
+  apt-get upgrade -qq && \
+  apt-get install -qqy ocaml && \
   rm -rf /var/lib/apt/lists/*
 
 # perl
-RUN apt-get update && \
-  apt-get upgrade && \
-  apt-get install -y perl && \
+RUN apt-get update -qq && \
+  apt-get upgrade -qq && \
+  apt-get install -qqy perl && \
   rm -rf /var/lib/apt/lists/*
 
 # python
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y python-all-dev python-setuptools python-pip python3-all-dev python3-setuptools python3-pip && \
+RUN apt-get update -qq && \
+  apt-get upgrade -qqy && \
+  apt-get install -qqy python-all-dev python-setuptools python-pip python3-all-dev python3-setuptools python3-pip && \
   rm -rf /var/lib/apt/lists/*
 RUN pip install nose
 RUN pip3 install nose
 
 # ruby
 RUN apt-add-repository -y ppa:brightbox/ruby-ng && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y ruby2.2 ruby2.2-dev && \
+  apt-get update -qq && \
+  apt-get upgrade -qqy && \
+  apt-get install -qqy ruby2.2 ruby2.2-dev && \
   rm -rf /var/lib/apt/lists/*
 RUN gem update
 RUN gem install bundler
@@ -69,9 +69,9 @@ ENV PATH $PATH:/room/.gem/ruby/2.2.0/bin
 
 # php
 RUN LANG=C.UTF-8 apt-add-repository -y ppa:ondrej/php && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-json php5.6-mcrypt php5.6-mysql php5.6-pgsql php5.6-sqlite && \
+  apt-get update -qq && \
+  apt-get upgrade -qqy && \
+  apt-get install -qqy php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-json php5.6-mcrypt php5.6-mysql php5.6-pgsql php5.6-sqlite && \
   rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 RUN wget https://phar.phpunit.de/phpunit.phar && \
@@ -79,9 +79,9 @@ RUN wget https://phar.phpunit.de/phpunit.phar && \
   mv phpunit.phar /usr/local/bin/phpunit
 
 # mono
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y --no-install-recommends mono-complete monodevelop monodevelop-nunit nunit-console && \
+RUN apt-get update -qq && \
+  apt-get upgrade -qqy && \
+  apt-get install -qqy --no-install-recommends mono-complete monodevelop monodevelop-nunit nunit-console && \
   rm -rf /var/lib/apt/lists/*
 ENV MONO_PATH /usr/lib/monodevelop/AddIns/NUnit
 
@@ -99,15 +99,15 @@ ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
 
 # node
 RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
-RUN apt-get install -y nodejs && \
+RUN apt-get install -qqy nodejs && \
   rm -rf /var/lib/apt/lists/*
 RUN npm install -g codecheck@0.5.6 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
 
 # java
 RUN apt-add-repository -y ppa:webupd8team/java && \
-  apt-get update && \
+  apt-get update -qq && \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | tee /etc/oracle-java-8-licence-acceptance | /usr/bin/debconf-set-selections && \
-  apt-get install -y oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
+  apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
   rm -rf /var/lib/apt/lists/*
 
 # scala environment
@@ -142,7 +142,7 @@ RUN wget http://downloads.typesafe.com/typesafe-activator/1.3.2/typesafe-activat
   && rm typesafe-activator-1.3.2-minimal.zip
 RUN ln -s /usr/local/share/activator/1.3.2/activator-1.3.2-minimal/activator /usr/local/bin/activator
 
-RUN apt-get update && \
+RUN apt-get update -qq && \
   apt-get install sbcl && \
   rm -rf /var/lib/apt/lists/*
 
