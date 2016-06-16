@@ -97,12 +97,21 @@ docker run --rm -it all which python
 docker run --rm -it all python --version
 docker run --rm -it all bash --login -c 'which python'
 docker run --rm -it all bash --login -c 'python --version'
-[[ "`docker run --rm all python -V 2>&1`" == *'2.7.6'* ]]
+[[ "`docker run --rm all python -V 2>&1`" == *'2.7.11'* ]]
+docker run --rm -it all pip --version
+docker run --rm -it all bash --login -c 'which pip'
+docker run --rm -it all bash --login -c 'pip --version'
+[[ "`docker run --rm all pip --version`" == 'pip 8.1.2 from /usr/local/lib/python2.7/site-packages (python 2.7)' ]]
 docker run --rm -it all which python3
 docker run --rm -it all python3 --version
 docker run --rm -it all bash --login -c 'which python3'
 docker run --rm -it all bash --login -c 'python3 --version'
-[[ "`docker run --rm all python3 -V 2>&1`" == *'3.4.3'* ]]
+[[ "`docker run --rm all python3 -V 2>&1`" == *'3.5.1'* ]]
+docker run --rm -it all which pip3
+docker run --rm -it all pip3 --version
+docker run --rm -it all bash --login -c 'which pip3'
+docker run --rm -it all bash --login -c 'pip3 --version'
+[[ "`docker run --rm all pip3 --version`" == 'pip 8.1.2 from /usr/local/lib/python3.5/site-packages (python 3.5)' ]]
 docker run --rm -it all which mono
 docker run --rm -it all mono --version
 docker run --rm -it all bash --login -c 'which mono'

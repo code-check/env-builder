@@ -48,14 +48,6 @@ RUN apt-get update -qq && \
   apt-get install -qqy perl && \
   rm -rf /var/lib/apt/lists/*
 
-# python
-RUN apt-get update -qq && \
-  apt-get upgrade -qqy && \
-  apt-get install -qqy python-all-dev python-setuptools python-pip python3-all-dev python3-setuptools python3-pip && \
-  rm -rf /var/lib/apt/lists/*
-RUN pip install nose
-RUN pip3 install nose
-
 # ruby
 RUN apt-add-repository -y ppa:brightbox/ruby-ng && \
   apt-get update -qq && \
@@ -109,6 +101,33 @@ RUN apt-add-repository -y ppa:webupd8team/java && \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | tee /etc/oracle-java-8-licence-acceptance | /usr/bin/debconf-set-selections && \
   apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
   rm -rf /var/lib/apt/lists/*
+
+# python
+RUN apt-get update -qq && \
+  apt-get install -qqy build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev && \
+  rm -rf /var/lib/apt/lists/*
+RUN VERSION='3.5.1' && \
+  wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
+  tar zxvf Python-${VERSION}.tgz && \
+  cd Python-${VERSION} && \
+  ./configure && \
+  make && \
+  make install && \
+  cd .. && \
+  rm -r Python-${VERSION}.tgz Python-${VERSION}
+RUN VERSION='2.7.11' && \
+  wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
+  tar zxvf Python-${VERSION}.tgz && \
+  cd Python-${VERSION} && \
+  ./configure && \
+  make && \
+  make install && \
+  cd .. && \
+  rm -r Python-${VERSION}.tgz Python-${VERSION}
+RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python3
+RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python
+RUN pip install nose
+RUN pip3 install nose
 
 # scala environment
 RUN mkdir -p /usr/local/share/scala/2.11.7
