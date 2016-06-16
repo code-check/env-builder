@@ -60,7 +60,7 @@ RUN pip3 install nose
 RUN apt-add-repository -y ppa:brightbox/ruby-ng && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
-  apt-get install -qqy ruby2.2 ruby2.2-dev && \
+  apt-get install -qqy ruby2.3 ruby2.3-dev && \
   rm -rf /var/lib/apt/lists/*
 RUN gem update
 RUN gem install bundler
