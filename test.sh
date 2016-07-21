@@ -56,6 +56,7 @@ docker run --rm -it all go version
 docker run --rm -it all bash --login -c 'type go'
 docker run --rm -it all bash --login -c 'which go'
 docker run --rm -it all bash --login -c 'go version'
+[[ "`docker run --rm all go version`" == *'1.6.3'* ]]
 docker run --rm -it all which scala
 docker run --rm -it all scala -version
 docker run --rm -it all bash --login -c 'type scala'
@@ -116,7 +117,7 @@ docker run --rm -it all which mono
 docker run --rm -it all mono --version
 docker run --rm -it all bash --login -c 'which mono'
 docker run --rm -it all bash --login -c 'mono --version'
-[[ "`docker run --rm all mono --version`" == *'3.2.8'* ]]
+[[ "`docker run --rm all mono --version`" == *'4.4.1'* ]]
 docker run --rm -it all which rspec
 docker run --rm -it all rspec --version
 docker run --rm -it all bash --login -c 'which rspec'
