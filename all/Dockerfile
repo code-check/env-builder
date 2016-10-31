@@ -93,7 +93,7 @@ RUN wget https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary
 ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
 
 # node
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -qqy nodejs && \
   rm -rf /var/lib/apt/lists/*
 RUN npm install -g codecheck@0.6.0 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
