@@ -5,3 +5,5 @@ test:
   override:
     - docker build -t all all
     - all/test.sh
+    - docker build -t ruby ruby
+    - ruby/test.sh
