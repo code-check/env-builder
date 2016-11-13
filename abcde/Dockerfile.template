@@ -46,15 +46,15 @@ RUN pip install nose
 RUN pip3 install nose
 
 # ruby
-RUN wget -nv http://ftp.ruby-lang.org/pub/ruby/2.3.1/ruby-2.3.1.tar.gz && \
-  tar -xzvf ruby-2.3.1.tar.gz && \
-  cd ruby-2.3.1/ && \
+RUN wget -nv http://ftp.ruby-lang.org/pub/ruby/#{version e}/ruby-#{version e}.tar.gz && \
+  tar -xzvf ruby-#{version e}.tar.gz && \
+  cd ruby-#{version e}/ && \
   ./configure && \
   make && \
   make install && \
   cd .. && \
-  rm -r ruby-2.3.1
+  rm -r ruby-#{version e}
 RUN gem update
 RUN gem install bundler
-RUN gem install rspec --version '2.3.1'
+RUN gem install rspec --version '#{version e}'
 
