@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker
+
+before_script:
+  - docker build -t all all
+
+script:
+  - bash -eux all/test.sh
+

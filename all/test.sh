@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 docker run --rm -it all which ghc
 docker run --rm -it all ghc --version
 docker run --rm -it all bash --login -c 'which ghc'

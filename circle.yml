@@ -4,4 +4,6 @@ machine:
 test:
   override:
     - docker build -t all all
-    - ./test.sh
+    - all/test.sh
+    - docker build -t ruby ruby
+    - ruby/test.sh
