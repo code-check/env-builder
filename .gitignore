@@ -3,3 +3,4 @@ data/
 Vagrantfile
 custom.yml
 hosts
+test/cpp/*.out

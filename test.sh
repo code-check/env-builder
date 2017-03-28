@@ -108,7 +108,7 @@ docker run --rm -it all which python3
 docker run --rm -it all python3 --version
 docker run --rm -it all bash --login -c 'which python3'
 docker run --rm -it all bash --login -c 'python3 --version'
-[[ "`docker run --rm all python3 -V 2>&1`" == *'3.5.1'* ]]
+[[ "`docker run --rm all python3 -V 2>&1`" == *'3.6.1'* ]]
 docker run --rm -it all which pip3
 docker run --rm -it all pip3 --version
 docker run --rm -it all bash --login -c 'which pip3'
@@ -130,3 +130,6 @@ docker run --rm -it all bash --login -c 'which sbcl'
 docker run --rm -it all bash --login -c 'sbcl --version'
 [[ "`docker run --rm all sbcl --version`" == *'1.1.14'* ]]
 
+docker run --rm -it all bash --login -c "echo \$LANG"
+docker run --rm -it all bash --login -c "cargo --version"
+docker run --rm -it all bash --login -c "rustc --version"
