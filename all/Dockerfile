@@ -67,9 +67,9 @@ RUN LANG=C.UTF-8 apt-add-repository -y ppa:ondrej/php && \
   apt-get install -qqy php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-json php5.6-mcrypt php5.6-mysql php5.6-pgsql php5.6-sqlite && \
   rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-RUN wget https://phar.phpunit.de/phpunit.phar && \
-  chmod +x phpunit.phar && \
-  mv phpunit.phar /usr/local/bin/phpunit
+RUN wget https://phar.phpunit.de/phpunit-5.7.phar && \
+  chmod +x phpunit-5.7.phar && \
+  mv phpunit-5.7.phar /usr/local/bin/phpunit
 
 # mono
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
@@ -96,7 +96,7 @@ ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -qqy nodejs && \
   rm -rf /var/lib/apt/lists/*
-RUN npm install -g codecheck@0.6.1 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
+RUN npm install -g codecheck@0.6.2 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
 
 # java
 RUN apt-add-repository -y ppa:webupd8team/java && \
@@ -109,7 +109,7 @@ RUN apt-add-repository -y ppa:webupd8team/java && \
 RUN apt-get update -qq && \
   apt-get install -qqy build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev && \
   rm -rf /var/lib/apt/lists/*
-RUN VERSION='3.5.1' && \
+RUN VERSION='3.6.1' && \
   wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
   tar zxvf Python-${VERSION}.tgz && \
   cd Python-${VERSION} && \
@@ -180,3 +180,18 @@ RUN curl -O https://beta.quicklisp.org/quicklisp.lisp && \
 RUN mkdir .go
 ENV GOPATH /root/.go
 ENV PATH $PATH:/usr/local/go/bin
+
+# language-pack-en
+RUN apt-get update -qq && \
+  apt-get install language-pack-en -qqy && \
+  update-locale LANG=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+
+# rust
+
+RUN apt-get update -qq && \
+  curl https://sh.rustup.rs -sSf > ./rustup.sh && \
+  chmod +x rustup.sh && \
+  ./rustup.sh -y && \
+  rm rustup.sh
+ENV PATH $PATH:/root/.cargo/bin

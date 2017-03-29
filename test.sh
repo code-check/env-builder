@@ -9,7 +9,7 @@ docker run --rm -it all cabal --version
 docker run --rm -it all bash --login -c 'which cabal'
 docker run --rm -it all bash --login -c 'cabal --version'
 #[[ "`docker run --rm all cabal --version`" == *'1.22.6.0'* ]]
-[[ "`docker run --rm all cabal info hspec`" == *'Versions installed: 2.3.2'* ]]
+[[ "`docker run --rm all cabal info hspec`" == *'Versions installed: 2.4.3'* ]]
 docker run --rm -it all which gcc
 docker run --rm -it all gcc --version
 docker run --rm -it all bash --login -c 'which gcc'
@@ -32,7 +32,7 @@ docker run --rm -it all which node
 docker run --rm -it all node --version
 docker run --rm -it all bash --login -c 'which node'
 docker run --rm -it all bash --login -c 'node --version'
-[[ "`docker run --rm -it all bash --login -c 'node --version'`" == *'v6.9.1'* ]]
+[[ "`docker run --rm -it all bash --login -c 'node --version'`" == *'v6.10.1'* ]]
 docker run --rm -it all which codecheck
 docker run --rm -it all codecheck
 docker run --rm -it all bash --login -c 'which codecheck'
@@ -92,7 +92,7 @@ docker run --rm -it all which php
 docker run --rm -it all php --version
 docker run --rm -it all bash --login -c 'which php'
 docker run --rm -it all bash --login -c 'php --version'
-[[ "`docker run --rm all php --version`" == *'5.6.27-1'* ]]
+[[ "`docker run --rm all php --version`" == *'5.6.30-7'* ]]
 docker run --rm -it all which phpunit
 docker run --rm -it all phpunit --version
 docker run --rm -it all which python
@@ -103,22 +103,22 @@ docker run --rm -it all bash --login -c 'python --version'
 docker run --rm -it all pip --version
 docker run --rm -it all bash --login -c 'which pip'
 docker run --rm -it all bash --login -c 'pip --version'
-[[ "`docker run --rm all pip --version`" == 'pip 8.1.2 from /usr/local/lib/python2.7/site-packages (python 2.7)' ]]
+[[ "`docker run --rm all pip --version`" == 'pip 9.0.1 from /usr/local/lib/python2.7/site-packages (python 2.7)' ]]
 docker run --rm -it all which python3
 docker run --rm -it all python3 --version
 docker run --rm -it all bash --login -c 'which python3'
 docker run --rm -it all bash --login -c 'python3 --version'
-[[ "`docker run --rm all python3 -V 2>&1`" == *'3.5.1'* ]]
+[[ "`docker run --rm all python3 -V 2>&1`" == *'3.6.1'* ]]
 docker run --rm -it all which pip3
 docker run --rm -it all pip3 --version
 docker run --rm -it all bash --login -c 'which pip3'
 docker run --rm -it all bash --login -c 'pip3 --version'
-[[ "`docker run --rm all pip3 --version`" == 'pip 8.1.2 from /usr/local/lib/python3.5/site-packages (python 3.5)' ]]
+[[ "`docker run --rm all pip3 --version`" == 'pip 9.0.1 from /usr/local/lib/python3.6/site-packages (python 3.6)' ]]
 docker run --rm -it all which mono
 docker run --rm -it all mono --version
 docker run --rm -it all bash --login -c 'which mono'
 docker run --rm -it all bash --login -c 'mono --version'
-[[ "`docker run --rm all mono --version`" == *'4.6.1'* ]]
+[[ "`docker run --rm all mono --version`" == *'4.8.0'* ]]
 docker run --rm -it all which rspec
 docker run --rm -it all rspec --version
 docker run --rm -it all bash --login -c 'which rspec'
@@ -130,3 +130,6 @@ docker run --rm -it all bash --login -c 'which sbcl'
 docker run --rm -it all bash --login -c 'sbcl --version'
 [[ "`docker run --rm all sbcl --version`" == *'1.1.14'* ]]
 
+docker run --rm -it all bash --login -c "echo \$LANG"
+docker run --rm -it all bash --login -c "cargo --version"
+docker run --rm -it all bash --login -c "rustc --version"
