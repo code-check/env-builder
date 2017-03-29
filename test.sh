@@ -113,7 +113,7 @@ docker run --rm -it all which pip3
 docker run --rm -it all pip3 --version
 docker run --rm -it all bash --login -c 'which pip3'
 docker run --rm -it all bash --login -c 'pip3 --version'
-[[ "`docker run --rm all pip3 --version`" == 'pip 9.0.1 from /usr/local/lib/python3.5/site-packages (python 3.6)' ]]
+[[ "`docker run --rm all pip3 --version`" == 'pip 9.0.1 from /usr/local/lib/python3.6/site-packages (python 3.6)' ]]
 docker run --rm -it all which mono
 docker run --rm -it all mono --version
 docker run --rm -it all bash --login -c 'which mono'
