@@ -9,7 +9,7 @@ docker run --rm -it all cabal --version
 docker run --rm -it all bash --login -c 'which cabal'
 docker run --rm -it all bash --login -c 'cabal --version'
 #[[ "`docker run --rm all cabal --version`" == *'1.22.6.0'* ]]
-[[ "`docker run --rm all cabal info hspec`" == *'Versions installed: 2.3.2'* ]]
+[[ "`docker run --rm all cabal info hspec`" == *'Versions installed: 2.4.3'* ]]
 docker run --rm -it all which gcc
 docker run --rm -it all gcc --version
 docker run --rm -it all bash --login -c 'which gcc'
