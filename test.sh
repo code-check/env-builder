@@ -21,11 +21,11 @@ readonly VERSION_RSPEC="3.4.4"
 
 docker_run () {
 	echo "===== command to run: $* =====" >&2
-	docker run --rm -it givery/codecheck $*
+	docker run --rm -it all $*
 }
 docker_run_login () {
 	echo "===== command to run: bash --login -c \"$*\" =====" >&2
-	docker run --rm -it givery/codecheck bash --login -c "$*"
+	docker run --rm -it all bash --login -c "$*"
 }
 
 expect_to_include () {
