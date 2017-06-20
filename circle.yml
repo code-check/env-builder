@@ -3,5 +3,5 @@ machine:
     - docker
 test:
   override:
-    - docker build --rm=false -t all all
+    - docker build -t all all
     - ./test.sh
