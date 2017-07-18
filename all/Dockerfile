@@ -80,6 +80,11 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E03280
   rm -rf /var/lib/apt/lists/*
 ENV MONO_PATH /usr/lib/monodevelop/AddIns/NUnit
 
+# nuget
+RUN VERSION='v4.1.0' && \
+  wget https://dist.nuget.org/win-x86-commandline/${VERSION}/nuget.exe && \
+  mono nuget.exe install Nancy -Version 1.4.3
+
 # gradle
 RUN wget https://services.gradle.org/distributions/gradle-2.7-bin.zip \
   && unzip gradle-2.7-bin.zip -d /usr/local/share/ \
