@@ -60,16 +60,16 @@ RUN gem install bundler
 RUN gem install rspec --version '3.4.0'
 ENV PATH $PATH:/room/.gem/ruby/2.2.0/bin
 
-# php
-RUN LANG=C.UTF-8 apt-add-repository -y ppa:ondrej/php && \
-  apt-get update -qq && \
-  apt-get upgrade -qqy && \
-  apt-get install -qqy php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-json php5.6-mcrypt php5.6-mysql php5.6-pgsql php5.6-sqlite && \
-  rm -rf /var/lib/apt/lists/*
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-RUN wget https://phar.phpunit.de/phpunit-5.7.phar && \
-  chmod +x phpunit-5.7.phar && \
-  mv phpunit-5.7.phar /usr/local/bin/phpunit
+# # php
+# RUN LANG=C.UTF-8 apt-add-repository -y ppa:ondrej/php && \
+#   apt-get update -qq && \
+#   apt-get upgrade -qqy && \
+#   apt-get install -qqy php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-json php5.6-mcrypt php5.6-mysql php5.6-pgsql php5.6-sqlite && \
+#   rm -rf /var/lib/apt/lists/*
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+# RUN wget https://phar.phpunit.de/phpunit-5.7.phar && \
+#   chmod +x phpunit-5.7.phar && \
+#   mv phpunit-5.7.phar /usr/local/bin/phpunit
 
 # mono
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \

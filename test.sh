@@ -7,7 +7,7 @@ readonly VERSION_HASKELL="7.6.3"
 readonly VERSION_MONO="5.0.1.1"
 readonly VERSION_NODE="v6.11.0"
 readonly VERSION_PERL="v5.18.2"
-readonly VERSION_PHP="5.6.30-12"
+# readonly VERSION_PHP="5.6.30-12"
 readonly VERSION_PYTHON2="2.7.11"
 readonly VERSION_PYTHON3="3.6.1"
 readonly VERSION_RUBY="2.3.4"
@@ -169,26 +169,26 @@ expect_to_include () {
 		expect_to_include "perl --version" $VERSION_PERL
 	}
 }
-: "PHP related" && {
-	: "php" && {
-		docker_run "which php"
-		docker_run "php --version"
-		docker_run_login "which php"
-		docker_run_login "php --version"
-		expect_to_include "php --version" $VERSION_PHP
-	}
-	: "composer" && {
-		docker_run "which composer"
-		docker_run "composer --version"
-		docker_run_login "type composer"
-		docker_run_login "which composer"
-		docker_run_login "composer --version"
-	}
-	: "phpunit" && {
-		docker_run "which phpunit"
-		docker_run "phpunit --version"
-	}
-}
+# : "PHP related" && {
+# 	: "php" && {
+# 		docker_run "which php"
+# 		docker_run "php --version"
+# 		docker_run_login "which php"
+# 		docker_run_login "php --version"
+# 		expect_to_include "php --version" $VERSION_PHP
+# 	}
+# 	: "composer" && {
+# 		docker_run "which composer"
+# 		docker_run "composer --version"
+# 		docker_run_login "type composer"
+# 		docker_run_login "which composer"
+# 		docker_run_login "composer --version"
+# 	}
+# 	: "phpunit" && {
+# 		docker_run "which phpunit"
+# 		docker_run "phpunit --version"
+# 	}
+# }
 : "Go related" && {
 	: "go" && {
 		docker_run "which go"
