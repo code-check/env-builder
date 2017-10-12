@@ -96,7 +96,7 @@ ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -qqy nodejs && \
   rm -rf /var/lib/apt/lists/*
-RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
+RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha chai nightmare grunt-cli gulp webpack
 
 # java
 RUN apt-add-repository -y ppa:webupd8team/java && \
@@ -188,10 +188,14 @@ RUN apt-get update -qq && \
 ENV LANG=en_US.UTF-8
 
 # rust
-
 RUN apt-get update -qq && \
   curl https://sh.rustup.rs -sSf > ./rustup.sh && \
   chmod +x rustup.sh && \
   ./rustup.sh -y && \
   rm rustup.sh
 ENV PATH $PATH:/root/.cargo/bin
+
+# headless browser dependencies for frontend tests
+RUN apt-get update && \
+  apt-get install -qqy xvfb libnss3-dev
+  rm -rf /var/lib/apt/lists/*
