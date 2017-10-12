@@ -197,5 +197,5 @@ ENV PATH $PATH:/root/.cargo/bin
 
 # headless browser dependencies for frontend tests
 RUN apt-get update && \
-  apt-get install -qqy xvfb libnss3-dev
+  apt-get install -qqy xvfb libnss3-dev && \
   rm -rf /var/lib/apt/lists/*
