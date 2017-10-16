@@ -10,7 +10,7 @@ RUN apt-get update -qq && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
   apt-get install -qqy git curl unzip wget && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 
 # go
 ENV GOLANG_VERSION=1.6.3
@@ -22,17 +22,17 @@ ENV PATH $PATH:/usr/local/go/bin
 # clang
 RUN apt-get update -qq && \
   apt-get install -qqy gcc-4.8 g++-4.8 && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 RUN apt-get update -qq && \
   apt-get install -qqy clang-3.4 libclang-common-3.4-dev libclang-3.4-dev libclang1-3.4 libclang1-3.4-dbg libllvm-3.4-ocaml-dev libllvm3.4 libllvm3.4-dbg lldb-3.4 llvm-3.4 llvm-3.4-dev llvm-3.4-runtime clang-modernize-3.4 clang-format-3.4 python-clang-3.4 lldb-3.4-dev && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 
 # haskell
 RUN apt-add-repository -y ppa:hvr/ghc && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
   apt-get install -qqy ghc-7.8.4 ghc-haddock ghc-prof alex-3.1.4 happy-1.19.5 cabal-install-1.22 && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 RUN ln -s /usr/bin/cabal-1.22 /usr/bin/cabal
 RUN cabal update
 RUN cabal install hspec
@@ -41,20 +41,20 @@ RUN cabal install hspec
 RUN apt-get update -qq && \
   apt-get upgrade -qq && \
   apt-get install -qqy ocaml && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 
 # perl
 RUN apt-get update -qq && \
   apt-get upgrade -qq && \
   apt-get install -qqy perl && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 
 # ruby
 RUN apt-add-repository -y ppa:brightbox/ruby-ng && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
   apt-get install -qqy ruby2.3 ruby2.3-dev && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 RUN gem update
 RUN gem install bundler
 RUN gem install rspec --version '3.4.0'
@@ -63,7 +63,7 @@ ENV PATH $PATH:/room/.gem/ruby/2.2.0/bin
 # python
 RUN apt-get update -qq && \
   apt-get install -qqy build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 RUN VERSION='3.6.1' && \
   wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
   tar zxvf Python-${VERSION}.tgz && \
@@ -92,7 +92,7 @@ RUN LANG=C.UTF-8 apt-add-repository -y ppa:ondrej/php && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
   apt-get install -qqy php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-json php5.6-mcrypt php5.6-mysql php5.6-pgsql php5.6-sqlite && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 RUN wget https://phar.phpunit.de/phpunit-5.7.phar && \
   chmod +x phpunit-5.7.phar && \
@@ -104,7 +104,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E03280
   apt-get update -qq && \
   apt-get upgrade -qqy && \
   apt-get install -qqy --no-install-recommends mono-complete monodevelop monodevelop-nunit nunit-console && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 ENV MONO_PATH /usr/lib/monodevelop/AddIns/NUnit
 
 # nuget
@@ -127,7 +127,7 @@ ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
 # node
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -qqy nodejs && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
 
 # java
@@ -135,7 +135,7 @@ RUN apt-add-repository -y ppa:webupd8team/java && \
   apt-get update -qq && \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | tee /etc/oracle-java-8-licence-acceptance | /usr/bin/debconf-set-selections && \
   apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 
 # scala environment
 RUN mkdir -p /usr/local/share/scala/2.11.7
@@ -171,7 +171,7 @@ RUN ln -s /usr/local/share/activator/1.3.2/activator-1.3.2-minimal/activator /us
 
 RUN apt-get update -qq && \
   apt-get install sbcl && \
-  # rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 
 RUN curl -O https://beta.quicklisp.org/quicklisp.lisp && \
   echo '(quicklisp-quickstart:install)\n(ql::without-prompting(ql:add-to-init-file))\n' > install.lisp && \
