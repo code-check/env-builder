@@ -108,6 +108,7 @@ RUN apt-add-repository -y ppa:webupd8team/java && \
 # python
 RUN apt-get update -qq && \
   apt-get install -qqy build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev zlib1g-dev && \
+  export LD_LIBRARY_PATH="/usr/local/ssl/lib" && \
   rm -rf /var/lib/apt/lists/*
 RUN VERSION='3.6.1' && \
   wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
@@ -127,8 +128,8 @@ RUN VERSION='2.7.11' && \
   make install && \
   cd .. && \
   rm -r Python-${VERSION}.tgz Python-${VERSION}
-# RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python3
-# RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python
+RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python3
+RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python
 RUN pip install nose
 RUN pip3 install nose
 
