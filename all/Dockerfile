@@ -62,7 +62,7 @@ ENV PATH $PATH:/room/.gem/ruby/2.2.0/bin
 
 # python
 RUN apt-get update -qq && \
-  apt-get install -qqy build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev && \
+  apt-get install -qqy build-essential libssl-dev libbz2-dev zlib1g-dev libreadline-dev libsqlite3-dev && \
   rm -rf /var/lib/apt/lists/*
 RUN VERSION='3.6.1' && \
   wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
