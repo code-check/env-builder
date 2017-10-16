@@ -60,6 +60,33 @@ RUN gem install bundler
 RUN gem install rspec --version '3.4.0'
 ENV PATH $PATH:/room/.gem/ruby/2.2.0/bin
 
+# python
+RUN apt-get update -qq && \
+  apt-get install -qqy build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev && \
+  rm -rf /var/lib/apt/lists/*
+RUN VERSION='3.6.1' && \
+  wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
+  tar zxvf Python-${VERSION}.tgz && \
+  cd Python-${VERSION} && \
+  ./configure && \
+  make && \
+  make install && \
+  cd .. && \
+  rm -r Python-${VERSION}.tgz Python-${VERSION}
+RUN VERSION='2.7.11' && \
+  wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
+  tar zxvf Python-${VERSION}.tgz && \
+  cd Python-${VERSION} && \
+  ./configure && \
+  make && \
+  make install && \
+  cd .. && \
+  rm -r Python-${VERSION}.tgz Python-${VERSION}
+RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python3
+RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python
+RUN pip install nose
+RUN pip3 install nose
+
 # php
 RUN LANG=C.UTF-8 apt-add-repository -y ppa:ondrej/php && \
   apt-get update -qq && \
@@ -79,6 +106,11 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E03280
   apt-get install -qqy --no-install-recommends mono-complete monodevelop monodevelop-nunit nunit-console && \
   # rm -rf /var/lib/apt/lists/*
 ENV MONO_PATH /usr/lib/monodevelop/AddIns/NUnit
+
+# nuget
+RUN VERSION='v4.1.0' && \
+  wget https://dist.nuget.org/win-x86-commandline/${VERSION}/nuget.exe && \
+  mono nuget.exe install Nancy -Version 1.4.3
 
 # gradle
 RUN wget https://services.gradle.org/distributions/gradle-2.7-bin.zip \
@@ -105,6 +137,7 @@ RUN apt-add-repository -y ppa:webupd8team/java && \
   apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
   # rm -rf /var/lib/apt/lists/*
 
+<<<<<<< HEAD
 # python
 RUN apt-get update -qq && \
   apt-get install -qqy build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev zlib1g-dev && \
@@ -133,6 +166,8 @@ RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python
 RUN pip install nose
 RUN pip3 install nose
 
+=======
+>>>>>>> origin/install-nuget-cli
 # scala environment
 RUN mkdir -p /usr/local/share/scala/2.11.7
 RUN wget http://www.scala-lang.org/files/archive/scala-2.11.7.tgz \
