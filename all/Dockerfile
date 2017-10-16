@@ -108,7 +108,7 @@ RUN apt-add-repository -y ppa:webupd8team/java && \
 # python
 RUN apt-get update -qq && \
   apt-get install -qqy build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev zlib1g-dev && \
-  export LD_LIBRARY_PATH="/usr/local/ssl/lib" && \
+  export LD_LIBRARY_PATH="/usr/include/openssl/" && \
   rm -rf /var/lib/apt/lists/*
 RUN VERSION='3.6.1' && \
   wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
