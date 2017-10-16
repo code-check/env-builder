@@ -127,8 +127,8 @@ RUN VERSION='2.7.11' && \
   make install && \
   cd .. && \
   rm -r Python-${VERSION}.tgz Python-${VERSION}
-RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python3
-RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python
+# RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python3
+# RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python
 RUN pip install nose
 RUN pip3 install nose
 
