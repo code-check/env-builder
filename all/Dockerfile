@@ -103,7 +103,11 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E03280
   echo "deb http://download.mono-project.com/repo/debian wheezy main" > /etc/apt/sources.list.d/mono-xamarin.list && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
-  apt-get install -qqy --no-install-recommends mono-complete monodevelop monodevelop-nunit nunit-console && \
+  apt-get install -qqy --no-install-recommends \
+    mono-complete=5.4.0.201-0xamarin10+debian7b1 \
+    monodevelop=5.10.0.871-0xamarin2 \
+    monodevelop-nunit=5.10.0.871-0xamarin2 \
+    nunit-console=2.6.3+dfsg-1~xamarin8+debian7b1 && \
   rm -rf /var/lib/apt/lists/*
 ENV MONO_PATH /usr/lib/monodevelop/AddIns/NUnit
 
@@ -134,6 +138,16 @@ RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha karm
 RUN apt-add-repository -y ppa:webupd8team/java && \
   apt-get update -qq && \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | tee /etc/oracle-java-8-licence-acceptance | /usr/bin/debconf-set-selections && \
+
+  # Dirty hack to fix Oracle's screwup with the download URL
+  # Reference: https://ubuntuforums.org/showthread.php?t=2374686&page=2&s=54df96426d957e93d1559dea42cf4a6b
+  (apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven || \
+   sed -i 's|JAVA_VERSION=8u144|JAVA_VERSION=8u152|' /var/lib/dpkg/info/oracle-java8-installer.* && \
+   sed -i 's|PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/|PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/|' /var/lib/dpkg/info/oracle-java8-installer.* && \
+   sed -i 's|SHA256SUM_TGZ="e8a341ce566f32c3d06f6d0f0eeea9a0f434f538d22af949ae58bc86f2eeaae4"|SHA256SUM_TGZ="218b3b340c3f6d05d940b817d0270dfe0cfd657a636bad074dcabe0c111961bf"|' /var/lib/dpkg/info/oracle-java8-installer.* && \
+   sed -i 's|J_DIR=jdk1.8.0_144|J_DIR=jdk1.8.0_152|' /var/lib/dpkg/info/oracle-java8-installer.*) && \
+  # End dirty hack
+
   apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
   rm -rf /var/lib/apt/lists/*
 
