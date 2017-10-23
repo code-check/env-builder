@@ -60,54 +60,9 @@ RUN gem install bundler
 RUN gem install rspec --version '3.4.0'
 ENV PATH $PATH:/room/.gem/ruby/2.2.0/bin
 
-# php
-RUN LANG=C.UTF-8 apt-add-repository -y ppa:ondrej/php && \
-  apt-get update -qq && \
-  apt-get upgrade -qqy && \
-  apt-get install -qqy php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-json php5.6-mcrypt php5.6-mysql php5.6-pgsql php5.6-sqlite && \
-  rm -rf /var/lib/apt/lists/*
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-RUN wget https://phar.phpunit.de/phpunit-5.7.phar && \
-  chmod +x phpunit-5.7.phar && \
-  mv phpunit-5.7.phar /usr/local/bin/phpunit
-
-# mono
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
-  echo "deb http://download.mono-project.com/repo/debian wheezy main" > /etc/apt/sources.list.d/mono-xamarin.list && \
-  apt-get update -qq && \
-  apt-get upgrade -qqy && \
-  apt-get install -qqy --no-install-recommends mono-complete monodevelop monodevelop-nunit nunit-console && \
-  rm -rf /var/lib/apt/lists/*
-ENV MONO_PATH /usr/lib/monodevelop/AddIns/NUnit
-
-# gradle
-RUN wget https://services.gradle.org/distributions/gradle-2.7-bin.zip \
-  && unzip gradle-2.7-bin.zip -d /usr/local/share/ \
-  && rm gradle-2.7-bin.zip
-ENV PATH $PATH:/usr/local/share/gradle-2.7/bin
-
-# groovy
-RUN wget https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-2.4.5.zip \
-  && unzip apache-groovy-binary-2.4.5.zip -d /usr/local/share/ \
-  && rm apache-groovy-binary-2.4.5.zip
-ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
-
-# node
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
-RUN apt-get install -qqy nodejs && \
-  rm -rf /var/lib/apt/lists/*
-RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
-
-# java
-RUN apt-add-repository -y ppa:webupd8team/java && \
-  apt-get update -qq && \
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | tee /etc/oracle-java-8-licence-acceptance | /usr/bin/debconf-set-selections && \
-  apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
-  rm -rf /var/lib/apt/lists/*
-
 # python
 RUN apt-get update -qq && \
-  apt-get install -qqy build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev && \
+  apt-get install -qqy build-essential libssl-dev libbz2-dev zlib1g-dev libreadline-dev libsqlite3-dev && \
   rm -rf /var/lib/apt/lists/*
 RUN VERSION='3.6.1' && \
   wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz && \
@@ -131,6 +86,70 @@ RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python3
 RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python
 RUN pip install nose
 RUN pip3 install nose
+
+# php
+RUN LANG=C.UTF-8 apt-add-repository -y ppa:ondrej/php && \
+  apt-get update -qq && \
+  apt-get upgrade -qqy && \
+  apt-get install -qqy php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-json php5.6-mcrypt php5.6-mysql php5.6-pgsql php5.6-sqlite && \
+  rm -rf /var/lib/apt/lists/*
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+RUN wget https://phar.phpunit.de/phpunit-5.7.phar && \
+  chmod +x phpunit-5.7.phar && \
+  mv phpunit-5.7.phar /usr/local/bin/phpunit
+
+# mono
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
+  echo "deb http://download.mono-project.com/repo/debian wheezy main" > /etc/apt/sources.list.d/mono-xamarin.list && \
+  apt-get update -qq && \
+  apt-get upgrade -qqy && \
+  apt-get install -qqy --no-install-recommends \
+    mono-complete=5.4.0.201-0xamarin10+debian7b1 \
+    monodevelop=5.10.0.871-0xamarin2 \
+    monodevelop-nunit=5.10.0.871-0xamarin2 \
+    nunit-console=2.6.3+dfsg-1~xamarin8+debian7b1 && \
+  rm -rf /var/lib/apt/lists/*
+ENV MONO_PATH /usr/lib/monodevelop/AddIns/NUnit
+
+# nuget
+RUN VERSION='v4.1.0' && \
+  wget https://dist.nuget.org/win-x86-commandline/${VERSION}/nuget.exe && \
+  mono nuget.exe install Nancy -Version 1.4.3
+
+# gradle
+RUN wget https://services.gradle.org/distributions/gradle-2.7-bin.zip \
+  && unzip gradle-2.7-bin.zip -d /usr/local/share/ \
+  && rm gradle-2.7-bin.zip
+ENV PATH $PATH:/usr/local/share/gradle-2.7/bin
+
+# groovy
+RUN wget https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-2.4.5.zip \
+  && unzip apache-groovy-binary-2.4.5.zip -d /usr/local/share/ \
+  && rm apache-groovy-binary-2.4.5.zip
+ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
+
+# node
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install -qqy nodejs && \
+  rm -rf /var/lib/apt/lists/*
+RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
+
+# java
+RUN apt-add-repository -y ppa:webupd8team/java && \
+  apt-get update -qq && \
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | tee /etc/oracle-java-8-licence-acceptance | /usr/bin/debconf-set-selections && \
+
+  # Dirty hack to fix Oracle's screwup with the download URL
+  # Reference: https://ubuntuforums.org/showthread.php?t=2374686&page=2&s=54df96426d957e93d1559dea42cf4a6b
+  (apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven || \
+   sed -i 's|JAVA_VERSION=8u144|JAVA_VERSION=8u152|' /var/lib/dpkg/info/oracle-java8-installer.* && \
+   sed -i 's|PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/|PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/|' /var/lib/dpkg/info/oracle-java8-installer.* && \
+   sed -i 's|SHA256SUM_TGZ="e8a341ce566f32c3d06f6d0f0eeea9a0f434f538d22af949ae58bc86f2eeaae4"|SHA256SUM_TGZ="218b3b340c3f6d05d940b817d0270dfe0cfd657a636bad074dcabe0c111961bf"|' /var/lib/dpkg/info/oracle-java8-installer.* && \
+   sed -i 's|J_DIR=jdk1.8.0_144|J_DIR=jdk1.8.0_152|' /var/lib/dpkg/info/oracle-java8-installer.*) && \
+  # End dirty hack
+
+  apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
+  rm -rf /var/lib/apt/lists/*
 
 # scala environment
 RUN mkdir -p /usr/local/share/scala/2.11.7
@@ -195,3 +214,7 @@ RUN apt-get update -qq && \
   ./rustup.sh -y && \
   rm rustup.sh
 ENV PATH $PATH:/root/.cargo/bin
+
+# Final rm command to clean everything up
+RUN  rm -rf /var/lib/apt/lists/*
+
