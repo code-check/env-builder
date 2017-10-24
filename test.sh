@@ -4,13 +4,13 @@ readonly VERSION_GCC="4.8.4"
 readonly VERSION_GO="1.6.3"
 readonly VERSION_GPP="4.8.4"
 readonly VERSION_HASKELL="7.6.3"
-readonly VERSION_MONO="5.0.1.1"
-readonly VERSION_NODE="v6.11.0"
+readonly VERSION_MONO="5.4.0.201"
+readonly VERSION_NODE="v6.11.4"
 readonly VERSION_PERL="v5.18.2"
-readonly VERSION_PHP="5.6.30-12"
+readonly VERSION_PHP="5.6.31-6"
 readonly VERSION_PYTHON2="2.7.11"
 readonly VERSION_PYTHON3="3.6.1"
-readonly VERSION_RUBY="2.3.4"
+readonly VERSION_RUBY="2.3.5"
 readonly VERSION_SBCL="1.1.14"
 
 readonly VERSION_CABAL="1.22.6.0"
@@ -22,11 +22,11 @@ readonly VERSION_RSPEC="3.4.4"
 
 docker_run () {
 	echo "===== command to run: $* =====" >&2
-	docker run --rm -it all $*
+	docker run --rm=false -it all $*
 }
 docker_run_login () {
 	echo "===== command to run: bash --login -c \"$*\" =====" >&2
-	docker run --rm -it all bash --login -c "$*"
+	docker run --rm=false -it all bash --login -c "$*"
 }
 
 expect_to_include () {
