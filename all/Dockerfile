@@ -132,7 +132,7 @@ ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -qqy nodejs && \
   rm -rf /var/lib/apt/lists/*
-RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha chai nightmare grunt-cli gulp webpack
+RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha chai nightmare@2.10.0 grunt-cli gulp webpack
 
 # java
 RUN apt-add-repository -y ppa:webupd8team/java && \

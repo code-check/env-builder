@@ -6,6 +6,7 @@ readonly VERSION_GPP="4.8.4"
 readonly VERSION_HASKELL="7.6.3"
 readonly VERSION_MONO="5.4.0.201"
 readonly VERSION_NODE="v6.11.4"
+readonly VERSION_NIGHTMARE="2.10.0"
 readonly VERSION_PERL="v5.18.2"
 readonly VERSION_PHP="5.6.31-6"
 readonly VERSION_PYTHON2="2.7.11"
@@ -158,6 +159,10 @@ expect_to_include () {
 		docker_run "codecheck"
 		docker_run_login "which codecheck"
 		docker_run_login "codecheck"
+	}
+	: "nightmare" && {
+		docker_run "npm ls nightmare --global"
+		expect_to_include "npm ls nightmare --global --parseable" $VERSION_NIGHTMARE 
 	}
 }
 : "Perl related" && {
