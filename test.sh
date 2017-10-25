@@ -162,7 +162,7 @@ expect_to_include () {
 	}
 	: "nightmare" && {
 		docker_run "npm ls nightmare --global"
-		expect_to_include "npm ls nightmare --global --parseable" $VERSION_NIGHTMARE 
+		expect_to_include "npm ls nightmare --global" $VERSION_NIGHTMARE 
 	}
 }
 : "Perl related" && {
