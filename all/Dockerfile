@@ -132,22 +132,20 @@ ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -qqy nodejs && \
   rm -rf /var/lib/apt/lists/*
-RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha karma grunt-cli gulp webpack
+RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha chai nightmare@2.10.0 grunt-cli gulp webpack
 
 # java
+# This currently contains a dirty hack (the command in parentheses)
+# to fix Oracle's screwup with the download URL
+# Reference: https://ubuntuforums.org/showthread.php?t=2374686&page=2&s=54df96426d957e93d1559dea42cf4a6b
 RUN apt-add-repository -y ppa:webupd8team/java && \
   apt-get update -qq && \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | tee /etc/oracle-java-8-licence-acceptance | /usr/bin/debconf-set-selections && \
-
-  # Dirty hack to fix Oracle's screwup with the download URL
-  # Reference: https://ubuntuforums.org/showthread.php?t=2374686&page=2&s=54df96426d957e93d1559dea42cf4a6b
   (apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven || \
    sed -i 's|JAVA_VERSION=8u144|JAVA_VERSION=8u152|' /var/lib/dpkg/info/oracle-java8-installer.* && \
    sed -i 's|PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/|PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/|' /var/lib/dpkg/info/oracle-java8-installer.* && \
    sed -i 's|SHA256SUM_TGZ="e8a341ce566f32c3d06f6d0f0eeea9a0f434f538d22af949ae58bc86f2eeaae4"|SHA256SUM_TGZ="218b3b340c3f6d05d940b817d0270dfe0cfd657a636bad074dcabe0c111961bf"|' /var/lib/dpkg/info/oracle-java8-installer.* && \
    sed -i 's|J_DIR=jdk1.8.0_144|J_DIR=jdk1.8.0_152|' /var/lib/dpkg/info/oracle-java8-installer.*) && \
-  # End dirty hack
-
   apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
   rm -rf /var/lib/apt/lists/*
 
@@ -207,7 +205,6 @@ RUN apt-get update -qq && \
 ENV LANG=en_US.UTF-8
 
 # rust
-
 RUN apt-get update -qq && \
   curl https://sh.rustup.rs -sSf > ./rustup.sh && \
   chmod +x rustup.sh && \
@@ -215,6 +212,7 @@ RUN apt-get update -qq && \
   rm rustup.sh
 ENV PATH $PATH:/root/.cargo/bin
 
-# Final rm command to clean everything up
-RUN  rm -rf /var/lib/apt/lists/*
-
+# headless browser dependencies for frontend tests
+RUN apt-get update && \
+  apt-get install -qqy xvfb libnss3-dev && \
+  rm -rf /var/lib/apt/lists/*
