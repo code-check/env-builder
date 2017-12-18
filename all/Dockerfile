@@ -132,7 +132,17 @@ ENV PATH $PATH:/usr/local/share/groovy-2.4.5/bin
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -qqy nodejs && \
   rm -rf /var/lib/apt/lists/*
-RUN npm install -g codecheck@0.6.5 typescript coffee-script babel-cli mocha chai nightmare@2.10.0 grunt-cli gulp webpack
+RUN npm install -g \
+  codecheck@0.6.5 \
+  mocha@3.4.2 \
+  chai \
+  nightmare@2.10.0 \
+  typescript \
+  coffee-script \
+  babel-cli \
+  grunt-cli \
+  gulp \
+  webpack
 
 # java
 # This currently contains a dirty hack (the command in parentheses)
