@@ -21,17 +21,43 @@ ENV PATH $PATH:/usr/local/go/bin
 
 # clang
 RUN apt-get update -qq && \
-  apt-get install -qqy gcc-4.8 g++-4.8 && \
+  apt-get install -qqy \
+    gcc-4.8 \
+    g++-4.8 \
+    && \
   rm -rf /var/lib/apt/lists/*
 RUN apt-get update -qq && \
-  apt-get install -qqy clang-3.4 libclang-common-3.4-dev libclang-3.4-dev libclang1-3.4 libclang1-3.4-dbg libllvm-3.4-ocaml-dev libllvm3.4 libllvm3.4-dbg lldb-3.4 llvm-3.4 llvm-3.4-dev llvm-3.4-runtime clang-modernize-3.4 clang-format-3.4 python-clang-3.4 lldb-3.4-dev && \
+  apt-get install -qqy \
+    clang-3.4 \
+    libclang-common-3.4-dev \
+    libclang-3.4-dev \
+    libclang1-3.4 \
+    libclang1-3.4-dbg \
+    libllvm-3.4-ocaml-dev \
+    libllvm3.4 \
+    libllvm3.4-dbg \
+    lldb-3.4 \
+    llvm-3.4 \
+    llvm-3.4-dev \
+    llvm-3.4-runtime \
+    clang-modernize-3.4 \
+    clang-format-3.4 \
+    python-clang-3.4 \
+    lldb-3.4-dev \
+    && \
   rm -rf /var/lib/apt/lists/*
 
 # haskell
 RUN apt-add-repository -y ppa:hvr/ghc && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
-  apt-get install -qqy ghc-7.8.4 ghc-haddock ghc-prof alex-3.1.4 happy-1.19.5 cabal-install-1.22 && \
+  apt-get install -qqy ghc-7.8.4 \
+    ghc-haddock \
+    ghc-prof \
+    alex-3.1.4 \
+    happy-1.19.5 \
+    cabal-install-1.22 \
+    && \
   rm -rf /var/lib/apt/lists/*
 RUN ln -s /usr/bin/cabal-1.22 /usr/bin/cabal
 RUN cabal update
@@ -53,7 +79,10 @@ RUN apt-get update -qq && \
 RUN apt-add-repository -y ppa:brightbox/ruby-ng && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
-  apt-get install -qqy ruby2.3 ruby2.3-dev && \
+  apt-get install -qqy \
+    ruby2.3 \
+    ruby2.3-dev \
+    && \
   rm -rf /var/lib/apt/lists/*
 RUN gem update
 RUN gem install bundler
@@ -84,14 +113,25 @@ RUN VERSION='2.7.11' && \
   rm -r Python-${VERSION}.tgz Python-${VERSION}
 RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python3
 RUN curl --silent https://bootstrap.pypa.io/get-pip.py | python
-RUN pip install nose
-RUN pip3 install nose
+RUN pip install 'nose>=1.3.7,<1.4.0'
+RUN pip3 install 'nose>=1.3.7,<1.4.0'
 
 # php
 RUN LANG=C.UTF-8 apt-add-repository -y ppa:ondrej/php && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
-  apt-get install -qqy php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-json php5.6-mcrypt php5.6-mysql php5.6-pgsql php5.6-sqlite && \
+  apt-get install -qqy \
+    php5.6 \
+    php5.6-cli \
+    php5.6-common \
+    php5.6-curl \
+    php5.6-gd \
+    php5.6-json \
+    php5.6-mcrypt \
+    php5.6-mysql \
+    php5.6-pgsql \
+    php5.6-sqlite \
+    && \
   rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 RUN wget https://phar.phpunit.de/phpunit-5.7.phar && \
@@ -156,7 +196,12 @@ RUN apt-add-repository -y ppa:webupd8team/java && \
    sed -i 's|PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/|PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/|' /var/lib/dpkg/info/oracle-java8-installer.* && \
    sed -i 's|SHA256SUM_TGZ="e8a341ce566f32c3d06f6d0f0eeea9a0f434f538d22af949ae58bc86f2eeaae4"|SHA256SUM_TGZ="218b3b340c3f6d05d940b817d0270dfe0cfd657a636bad074dcabe0c111961bf"|' /var/lib/dpkg/info/oracle-java8-installer.* && \
    sed -i 's|J_DIR=jdk1.8.0_144|J_DIR=jdk1.8.0_152|' /var/lib/dpkg/info/oracle-java8-installer.*) && \
-  apt-get install -qqy oracle-java8-installer ca-certificates oracle-java8-set-default maven && \
+  apt-get install -qqy \
+    oracle-java8-installer \
+    ca-certificates \
+    oracle-java8-set-default \
+    maven \
+    && \
   rm -rf /var/lib/apt/lists/*
 
 # scala environment
