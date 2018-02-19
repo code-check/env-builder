@@ -134,15 +134,15 @@ RUN apt-get install -qqy nodejs && \
   rm -rf /var/lib/apt/lists/*
 RUN npm install -g \
   codecheck@0.6.5 \
-  typescript@2.5.3 \
-  coffee-script@1.12.7 \
-  babel-cli@6.26.x \
-  mocha@4.x.x \
+  typescript@2.3.x \
+  coffee-script@1.12.x \
+  babel-cli@6.24.x \
+  mocha@3.4.x \
   chai@4.1.x \
-  nightmare@2.10.0 \
-  grunt-cli@1.2.0 \
-  gulp@3.9.1 \
-  webpack@3.8.1
+  nightmare@2.10.x \
+  grunt-cli@1.2.x \
+  gulp@3.9.x \
+  webpack@3.0.x
 
 # java
 # This currently contains a dirty hack (the command in parentheses)
