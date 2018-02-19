@@ -219,10 +219,6 @@ RUN wget https://dl.bintray.com/sbt/native-packages/sbt/0.13.9/sbt-0.13.9.tgz \
   && rm sbt-0.13.9.tgz
 RUN ln -s /usr/local/share/sbt/0.13.9/sbt/bin/sbt /usr/local/bin/sbt
 WORKDIR /root/tmp
-RUN sbt -sbt-version 0.13.5
-RUN sbt -sbt-version 0.13.6
-RUN sbt -sbt-version 0.13.7
-RUN sbt -sbt-version 0.13.8
 RUN sbt -sbt-version 0.13.9
 RUN git clone https://github.com/shok4a/cache-for-scala-sbt.git
 RUN cd cache-for-scala-sbt && git checkout scala2.11.7-sbt-1.13.5 && sbt compile
