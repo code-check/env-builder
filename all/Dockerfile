@@ -85,8 +85,8 @@ RUN apt-add-repository -y ppa:brightbox/ruby-ng && \
     && \
   rm -rf /var/lib/apt/lists/*
 RUN gem update
-RUN gem install bundler
-RUN gem install rspec --version '3.4.0'
+RUN gem install bundler --version '~>1.15.0'
+RUN gem install rspec --version '~>3.4.0'
 ENV PATH $PATH:/room/.gem/ruby/2.2.0/bin
 
 # python
