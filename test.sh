@@ -19,11 +19,11 @@ readonly VERSION_PYTHON3="3.6.1"
 readonly VERSION_RUBY="2.3.5"
 readonly VERSION_SBCL="1.1.14"
 
-readonly VERSION_CABAL="1.22.6.0"
+readonly VERSION_CABAL="1.22.9.0"
 readonly VERSION_PIP2="9.0.1"
 readonly VERSION_PIP3="9.0.1"
 
-readonly VERSION_HSPEC="2.4.4"
+readonly VERSION_HSPEC="2.4.8"
 readonly VERSION_RSPEC="3.4.4"
 
 docker_run () {
@@ -60,6 +60,7 @@ expect_to_include () {
 	}
 	: "cabal & hspec" && {
 		docker_run_login "which cabal"
+		expect_to_include "cabal --numeric-version" "$VERSION_CABAL"
 		expect_to_include "cabal info hspec" "Versions installed: $VERSION_HSPEC"
 	}
 }

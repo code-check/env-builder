@@ -61,7 +61,7 @@ RUN apt-add-repository -y ppa:hvr/ghc && \
   rm -rf /var/lib/apt/lists/*
 RUN ln -s /usr/bin/cabal-1.22 /usr/bin/cabal
 RUN cabal update
-RUN cabal install hspec
+RUN cabal install 'hspec < 2.5'
 
 # ocaml
 RUN apt-get update -qq && \
