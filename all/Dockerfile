@@ -144,7 +144,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E03280
   apt-get update -qq && \
   apt-get upgrade -qqy && \
   apt-get install -qqy --no-install-recommends \
-    mono-complete=5.4.0.201-0xamarin10+debian7b1 \
+    mono-complete=5.8.0.108-0xamarin1+debian7b1 \
     monodevelop=5.10.0.871-0xamarin2 \
     monodevelop-nunit=5.10.0.871-0xamarin2 \
     nunit-console=2.6.3+dfsg-1~xamarin8+debian7b1 && \
