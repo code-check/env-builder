@@ -17,7 +17,7 @@ readonly VERSION_GO="1.6.3"
 readonly VERSION_HASKELL="7.6.3"
 
 readonly VERSION_PERL="v5.18.2"
-readonly VERSION_PHP="5.6.31-6"
+readonly VERSION_PHP="5.6.33"
 readonly VERSION_PYTHON2="2.7.11"
 readonly VERSION_PYTHON3="3.6.1"
 readonly VERSION_RUBY="2.3.5"
