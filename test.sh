@@ -6,6 +6,10 @@ readonly VERSION_GCC="4.8.4"
 readonly VERSION_GPP="4.8.4"
 readonly VERSION_MONO="5.8.0.108"
 
+readonly VERSION_JAVA="1.8.0_161"
+readonly VERSION_SCALA="2.11.7"
+readonly VERSION_GROOVY="2.4.5"
+
 readonly VERSION_NODE="v6.11.9"
 readonly VERSION_NIGHTMARE="2.10.0"
 
@@ -25,6 +29,7 @@ readonly VERSION_PIP3="9.0.1"
 
 readonly VERSION_HSPEC="2.4.8"
 readonly VERSION_RSPEC="3.4.4"
+readonly VERSION_PHPUNIT="5.7.21"
 
 docker_run () {
 	echo "===== command to run: $* =====" >&2
@@ -90,14 +95,14 @@ expect_to_include () {
 		docker_run "java -version"
 		docker_run_login "type java"
 		docker_run_login "which java"
-		docker_run_login "java -version"
+		expect_to_include "java -version" "$VERSION_JAVA"
 	}
 	: "scala" && {
 		docker_run "which scala"
 		docker_run "scala -version"
 		docker_run_login "type scala"
 		docker_run_login "which scala"
-		docker_run_login "scala -version"
+		expect_to_include "scala -version" "$VERSION_SCALA"
 		: "sbt" && {
 			docker_run "which sbt"
 			docker_run "sbt sbt-version"
@@ -124,6 +129,7 @@ expect_to_include () {
 		docker_run "groovy --version"
 		docker_run_login "which groovy"
 		docker_run_login "groovy --version"
+		expect_to_include "groovy --version" "$VERSION_GROOVY"
 	}
 	: "gradle" && {
 		docker_run "which gradle"
@@ -163,8 +169,8 @@ expect_to_include () {
 		docker_run_login "composer --version"
 	}
 	: "phpunit" && {
-		docker_run "which phpunit"
-		docker_run "phpunit --version"
+		docker_run_login "which phpunit"
+		expect_to_include "phpunit --version" "$VERSION_PHPUNIT"
 	}
 }
 : "Go related" && {
