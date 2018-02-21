@@ -6,7 +6,7 @@ readonly VERSION_GCC="4.8.4"
 readonly VERSION_GPP="4.8.4"
 readonly VERSION_MONO="5.8.0.108"
 
-readonly VERSION_NODE="v6.11.5"
+readonly VERSION_NODE="v6.11.9"
 readonly VERSION_NIGHTMARE="2.10.0"
 
 readonly VERSION_GO="1.6.3"
