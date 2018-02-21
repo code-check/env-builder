@@ -1,4 +1,9 @@
 #!/bin/bash -e
+
+# Use `all` by default, but able to specify the image name if you want
+[ $# -ne 0 ] && echo "Test using an image $1" >&2
+readonly DOCKER_IMAGE=${1:-all}
+
 readonly VERSION_CODECHECK="0.6.5"
 
 readonly VERSION_CLANG="3.4"
@@ -33,11 +38,11 @@ readonly VERSION_PHPUNIT="5.7.21"
 
 docker_run () {
 	echo "===== command to run: $* =====" >&2
-	docker run --rm=false -it all $*
+	docker run --rm=false -it ${DOCKER_IMAGE} $*
 }
 docker_run_login () {
 	echo "===== command to run: bash --login -c \"$*\" =====" >&2
-	docker run --rm=false -it all bash --login -c "$*"
+	docker run --rm=false -it ${DOCKER_IMAGE} bash --login -c "$*"
 }
 
 expect_to_include () {
