@@ -10,7 +10,7 @@ readonly VERSION_JAVA="1.8.0_161"
 readonly VERSION_SCALA="2.11.7"
 readonly VERSION_GROOVY="2.4.5"
 
-readonly VERSION_NODE="v6.11.9"
+readonly VERSION_NODE="v6.13.0"
 readonly VERSION_NIGHTMARE="2.10.0"
 
 readonly VERSION_GO="1.6.3"
