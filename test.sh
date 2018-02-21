@@ -56,7 +56,7 @@ expect_to_include () {
 : "Haskell related" && {
 	: "haskell (ghc)" && {
 		docker_run_login "which ghc"
-		expect_to_include "ghc --version" $VERSION_HASKELL
+		expect_to_include "ghc --version" "$VERSION_HASKELL"
 	}
 	: "cabal & hspec" && {
 		docker_run_login "which cabal"
@@ -67,21 +67,21 @@ expect_to_include () {
 : "C/C++ related" && {
 	: "gcc" && {
 		docker_run_login "which gcc"
-		expect_to_include "gcc --version" $VERSION_GCC
+		expect_to_include "gcc --version" "$VERSION_GCC"
 	}
 	: "g++" && {
 		docker_run_login "which g++"
-		expect_to_include "g++ --version" $VERSION_GPP
+		expect_to_include "g++ --version" "$VERSION_GPP"
 	}
 	: "clang" && {
 		docker_run_login "which clang"
-		expect_to_include "clang --version" $VERSION_CLANG
+		expect_to_include "clang --version" "$VERSION_CLANG"
 	}
 }
 : "C# related" && {
 	: "mono" && {
 		docker_run_login "which mono"
-		expect_to_include "mono --version" $VERSION_MONO
+		expect_to_include "mono --version" "$VERSION_MONO"
 	}
 }
 : "Java related" && {
@@ -135,28 +135,28 @@ expect_to_include () {
 : "JavaScript related" && {
 	: "node" && {
 		docker_run_login "which node"
-		expect_to_include "node --version" $VERSION_NODE
+		expect_to_include "node --version" "$VERSION_NODE"
 	}
 	: "codecheck" && {
 		docker_run_login "which codecheck"
 		docker_run_login "codecheck"
-		expect_to_include "codecheck" $VERSION_CODECHECK
+		expect_to_include "codecheck" "$VERSION_CODECHECK"
 	}
 	: "nightmare" && {
 		docker_run_login "npm ls nightmare --global"
-		expect_to_include "npm ls nightmare --global" $VERSION_NIGHTMARE 
+		expect_to_include "npm ls nightmare --global" "$VERSION_NIGHTMARE"
 	}
 }
 : "Perl related" && {
 	: "perl" && {
 		docker_run_login "which perl"
-		expect_to_include "perl --version" $VERSION_PERL
+		expect_to_include "perl --version" "$VERSION_PERL"
 	}
 }
 : "PHP related" && {
 	: "php" && {
 		docker_run_login "which php"
-		expect_to_include "php --version" $VERSION_PHP
+		expect_to_include "php --version" "$VERSION_PHP"
 	}
 	: "composer" && {
 		docker_run_login "which composer"
@@ -170,17 +170,17 @@ expect_to_include () {
 : "Go related" && {
 	: "go" && {
 		docker_run_login "which go"
-		expect_to_include "go version" $VERSION_GO
+		expect_to_include "go version" "$VERSION_GO"
 	}
 }
 : "Ruby related" && {
 	: "ruby" && {
 		docker_run_login "which ruby"
-		expect_to_include "ruby --version" $VERSION_RUBY
+		expect_to_include "ruby --version" "$VERSION_RUBY"
 	}
 	: "rspec" && {
 		docker_run_login "which rspec"
-		expect_to_include "rspec --version" $VERSION_RSPEC
+		expect_to_include "rspec --version" "$VERSION_RSPEC"
 	}
 }
 : "Python related" && {
@@ -192,15 +192,15 @@ expect_to_include () {
 		docker_run_login "python2 --version"
 		: "pip (pip2)" && {
 			docker_run_login "which pip2"
-			expect_to_include "pip2 --version" $VERSION_PIP2
+			expect_to_include "pip2 --version" "$VERSION_PIP2"
 		}
 	}
 	: "python3" && {
 		docker_run_login "which python3"
-		expect_to_include "python3 --version" $VERSION_PYTHON3
+		expect_to_include "python3 --version" "$VERSION_PYTHON3"
 		: "pip3" && {
 			docker_run_login "which pip3"
-			expect_to_include "pip3 --version" $VERSION_PIP3
+			expect_to_include "pip3 --version" "$VERSION_PIP3"
 		}
 	}
 }
@@ -208,7 +208,7 @@ expect_to_include () {
 	# Steel Bank Common Lisp (SBCL)
 	: "sbcl" && {
 		docker_run_login "which sbcl"
-		expect_to_include "sbcl --version" $VERSION_SBCL
+		expect_to_include "sbcl --version" "$VERSION_SBCL"
 	}
 }
 : "Rust related" && {
