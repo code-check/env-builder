@@ -49,11 +49,29 @@ expect_to_include () {
 	local cmd=$1
 	local expect=$2
 	local login=${3:-yes}
+	local result
 	echo "** expect to include \"$expect\" **" >&2
+
+	# Following code logic is simple, but syntax is messy and hard to read
+	# The logic is
+	# whenever the command succeeds, output success message and return 0
+	# or else, output error message and return 1
+	#
+	# Here's the simplified code for each success case and failure case.
+	#
+	# { true && echo "true"; } || { echo "false" && false; }
+	# { false && echo "true"; } || { echo "false" && false; }
+	#
+	# It uses a combination of early return of `&&` and `||`.
+
 	if [[ "$login" == "yes" ]]; then
-		[[ "$(docker_run_login $cmd)" == *"$expect"* ]] && echo "as expected" >&2
+		result="$(docker_run_login $cmd)"
+		{ [[ "$result" == *"$expect"* ]] && echo "as expected" >&2; } \
+			|| { echo "Got '$result'" >&2 && false; }
 	else
-		[[ "$(docker_run $cmd)" == *"$expect"* ]] && echo "as expected" >&2
+		result=$(docker_run $cmd)
+		{ [[ "$result" == *"$expect"* ]] && echo "as expected" >&2; } \
+			|| { echo "Got '$result'" >&2 && false; }
 	fi
 }
 
