@@ -91,49 +91,31 @@ expect_to_include () {
 }
 : "Java related" && {
 	: "java" && {
-		docker_run "which java"
-		docker_run "java -version"
-		docker_run_login "type java"
 		docker_run_login "which java"
 		expect_to_include "java -version" "$VERSION_JAVA"
 	}
 	: "scala" && {
-		docker_run "which scala"
-		docker_run "scala -version"
-		docker_run_login "type scala"
 		docker_run_login "which scala"
 		expect_to_include "scala -version" "$VERSION_SCALA"
 		: "sbt" && {
-			docker_run "which sbt"
-			docker_run "sbt sbt-version"
-			docker_run_login "type sbt"
 			docker_run_login "which sbt"
 			docker_run_login "sbt sbt-version"
 		}
 		: "activator" && {
-			docker_run "which activator"
-			docker_run_login "type activator"
 			docker_run_login "which activator"
 		}
 		# Fast Scala compiler
 		: "fsc" && {
-			docker_run "which fsc"
-			docker_run "fsc -version"
-			docker_run_login "type fsc"
 			docker_run_login "which fsc"
 			docker_run_login "fsc -version"
 		}
 	}
 	: "groovy" && {
-		docker_run "which groovy"
-		docker_run "groovy --version"
 		docker_run_login "which groovy"
 		docker_run_login "groovy --version"
 		expect_to_include "groovy --version" "$VERSION_GROOVY"
 	}
 	: "gradle" && {
-		docker_run "which gradle"
-		docker_run "gradle --version"
 		docker_run_login "which gradle"
 		docker_run_login "gradle --version"
 	}
