@@ -25,7 +25,7 @@ readonly VERSION_PERL="v5.18.2"
 readonly VERSION_PHP="5.6.33"
 readonly VERSION_PYTHON2="2.7.11"
 readonly VERSION_PYTHON3="3.6.1"
-readonly VERSION_RUBY="2.3.5"
+readonly VERSION_RUBY="2.3.6"
 readonly VERSION_SBCL="1.1.14"
 
 readonly VERSION_CABAL="1.22.9.0"
