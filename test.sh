@@ -34,7 +34,7 @@ readonly VERSION_PIP3="9.0.1"
 
 readonly VERSION_HSPEC="2.4.8"
 readonly VERSION_RSPEC="3.4.4"
-readonly VERSION_PHPUNIT="5.7.21"
+readonly VERSION_PHPUNIT="5.7.27"
 
 docker_run () {
 	echo "===== command to run: $* =====" >&2
