@@ -3,13 +3,14 @@ FROM ubuntu:14.04.2
 ENV OS_USER_NAME codecheck
 WORKDIR /root
 
+# bc is installed for bash script challenge
 RUN apt-get update -qq && \
   apt-get upgrade -qqy && \
   apt-get install -qqy software-properties-common aptitude && \
   apt-add-repository -y ppa:git-core/ppa && \
   apt-get update -qq && \
   apt-get upgrade -qqy && \
-  apt-get install -qqy git curl unzip wget && \
+  apt-get install -qqy git curl unzip wget bc && \
   rm -rf /var/lib/apt/lists/*
 
 # go

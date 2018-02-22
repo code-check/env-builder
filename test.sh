@@ -79,6 +79,10 @@ expect_to_include () {
 	: "Language" && {
 		expect_to_include "echo \$LANG" "en_US.UTF-8"
 	}
+
+	: "bc" && {
+		docker_run_login "which bc"
+	}
 }
 
 : "Haskell related" && {
