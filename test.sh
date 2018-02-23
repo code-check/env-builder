@@ -32,6 +32,7 @@ readonly VERSION_CABAL="1.22.9.0"
 readonly VERSION_PIP2="9.0.1"
 readonly VERSION_PIP3="9.0.1"
 
+readonly VERSION_MOCHA="3.4.2"
 readonly VERSION_HSPEC="2.4.8"
 readonly VERSION_RSPEC="3.4.4"
 readonly VERSION_PHPUNIT="5.7.27"
@@ -65,11 +66,15 @@ expect_to_include () {
 	# It uses a combination of early return of `&&` and `||`.
 
 	if [[ "$login" == "yes" ]]; then
-		result="$(docker_run_login $cmd)"
+		# trimming newline; some outputs were broken by that
+		# e.g. `'ot '5.0.1` instead of `Got '5.0.1'`
+		result=$(docker_run_login "$cmd" | tr -d '\r\n')
 		{ [[ "$result" == *"$expect"* ]] && echo "as expected" >&2; } \
 			|| { echo "Got '$result'" >&2 && false; }
 	else
-		result=$(docker_run $cmd)
+		# trimming newline; some outputs were broken by that
+		# e.g. `'ot '5.0.1` instead of `Got '5.0.1'`
+		result=$(docker_run "$cmd" | tr -d '\r\n')
 		{ [[ "$result" == *"$expect"* ]] && echo "as expected" >&2; } \
 			|| { echo "Got '$result'" >&2 && false; }
 	fi
@@ -154,12 +159,15 @@ expect_to_include () {
 	}
 	: "codecheck" && {
 		docker_run_login "which codecheck"
-		docker_run_login "codecheck"
 		expect_to_include "codecheck" "$VERSION_CODECHECK"
 	}
 	: "nightmare" && {
-		docker_run_login "npm ls nightmare --global"
 		expect_to_include "npm ls nightmare --global" "$VERSION_NIGHTMARE"
+	}
+
+	: "mocha" && {
+		docker_run_login "which mocha"
+		expect_to_include "mocha --version" "$VERSION_MOCHA"
 	}
 }
 : "Perl related" && {
