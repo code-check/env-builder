@@ -9,7 +9,7 @@ readonly VERSION_CODECHECK="0.6.5"
 readonly VERSION_CLANG="3.4"
 readonly VERSION_GCC="4.8.4"
 readonly VERSION_GPP="4.8.4"
-readonly VERSION_MONO="5.8.0.108"
+readonly VERSION_MONO="5.8.0.127"
 
 readonly VERSION_JAVA="1.8.0_161"
 readonly VERSION_SCALA="2.11.7"
